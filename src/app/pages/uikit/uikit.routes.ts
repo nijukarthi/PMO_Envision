@@ -29,6 +29,27 @@ import { DproutputValueComponent } from '../unikit/dproutput-value/dproutput-val
 import { ManagementComponent } from '../unikit/management/management.component';
 import { ImcComponent } from '../unikit/imc/imc.component';
 import { CashComponent } from '../unikit/cash/cash.component';
+import { ProjectAnchorcageComponent } from '../unikit/project/osw/tsa/wtgproduction/project-anchorcage/project-anchorcage.component';
+import { ProjectNacelleComponent } from '../unikit/project/osw/tsa/wtgproduction/project-nacelle/project-nacelle.component';
+import { ProjectBladeComponent } from '../unikit/project/osw/tsa/wtgproduction/project-blade/project-blade.component';
+import { ProjectTowerComponent } from '../unikit/project/osw/tsa/wtgproduction/project-tower/project-tower.component';
+import { ProjectConverterPanelComponent } from '../unikit/project/osw/tsa/wtgproduction/project-converter-panel/project-converter-panel.component';
+import { ProjectSiteAccessoriesComponent } from '../unikit/project/osw/tsa/wtgproduction/project-site-accessories/project-site-accessories.component';
+import { ProjectTsaDeliveryAnchorcageComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-anchorcage/project-tsa-delivery-anchorcage.component';
+import { ProjectTsaDeliveryNacelleComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-nacelle/project-tsa-delivery-nacelle.component';
+import { ProjectTsaDeliveryHubComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-hub/project-tsa-delivery-hub.component';
+import { ProjectTsaDeliveryBladeComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-blade/project-tsa-delivery-blade.component';
+import { ProjectTsaProductionScadaComponent } from '../unikit/project/osw/tsa/wtgproduction/project-tsa-production-scada/project-tsa-production-scada.component';
+import { ProjectTsaProductionHubComponent } from '../unikit/project/osw/tsa/wtgproduction/project-tsa-production-hub/project-tsa-production-hub.component';
+import { ProjectTsaDeliveryTowerComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-tower/project-tsa-delivery-tower.component';
+import { ProjectTsaDeliveryConverterPanelComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-converter-panel/project-tsa-delivery-converter-panel.component';
+import { ProjectTsaDeliverySiteAccessoriesComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-site-accessories/project-tsa-delivery-site-accessories.component';
+import { ProjectTsaDeliveryScadaComponent } from '../unikit/project/osw/tsa/wtgdelivery/project-tsa-delivery-scada/project-tsa-delivery-scada.component';
+import { ProjectIandcReceivingAnchorcageComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-anchorcage/project-iandc-receiving-anchorcage.component';
+import { ProjectIandcReceivingBladeComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-blade/project-iandc-receiving-blade.component';
+import { ProjectIandcReceivingNacelleComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-nacelle/project-iandc-receiving-nacelle.component';
+import { ProjectIandcReceivingHubComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-hub/project-iandc-receiving-hub.component';
+import { ProjectIandcReceivingTowerComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-tower/project-iandc-receiving-tower.component';
 
 export default [
     { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemo },
@@ -43,6 +64,27 @@ export default [
     { path: 'dprOutputValue', data: { breadcrumb: 'Site Engineer' }, component: DproutputValueComponent },
     { path: 'planningManager', data: { breadcrumb: 'Site Engineer' }, component: PlanningManagerComponent },
     { path: 'productionManager', data: { breadcrumb: 'Site Engineer' }, component: ProductionManagerComponent },
+    { path: 'project/anchor-cage', data: { breadcrumb: 'Site Engineer' }, component: ProjectAnchorcageComponent },
+    { path: 'project/nacelle', data: { breadcrumb: 'Site Engineer' }, component: ProjectNacelleComponent },
+    { path: 'project/hub', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaProductionHubComponent },
+    { path: 'project/blade', data: { breadcrumb: 'Site Engineer' }, component: ProjectBladeComponent },
+    { path: 'project/tower', data: { breadcrumb: 'Site Engineer' }, component: ProjectTowerComponent },
+    { path: 'project/converter-panel', data: { breadcrumb: 'Site Engineer' }, component: ProjectConverterPanelComponent },
+    { path: 'project/site-accessories', data: { breadcrumb: 'Site Engineer' }, component: ProjectSiteAccessoriesComponent },
+    { path: 'project/scada', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaProductionScadaComponent },
+    { path: 'project/dispatch/anchor-cage', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliveryAnchorcageComponent },
+    { path: 'project/dispatch/nacelle', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliveryNacelleComponent },
+    { path: 'project/dispatch/hub', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliveryHubComponent },
+    { path: 'project/dispatch/blade', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliveryBladeComponent },
+    { path: 'project/dispatch/tower', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliveryTowerComponent },
+    { path: 'project/dispatch/converter-panel', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliveryConverterPanelComponent },
+    { path: 'project/dispatch/site-accessories', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliverySiteAccessoriesComponent },
+    { path: 'project/dispatch/scada', data: { breadcrumb: 'Site Engineer' }, component: ProjectTsaDeliveryScadaComponent },
+    { path: 'project/receiving/anchor-cage', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingAnchorcageComponent },
+    { path: 'project/receiving/nacelle', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingNacelleComponent },
+    { path: 'project/receiving/hub', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingHubComponent },
+    { path: 'project/receiving/blade', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingBladeComponent },
+    { path: 'project/receiving/tower', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingTowerComponent },
     { path: 'projectManager', data: { breadcrumb: 'Site Engineer' }, component: ProjectManagerComponent },
     { path: 'clusterManager', data: { breadcrumb: 'Site Engineer' }, component: ClusterManagerComponent },
     { path: 'siteManager', data: { breadcrumb: 'Site Engineer' }, component: HodSiteManagerComponent },

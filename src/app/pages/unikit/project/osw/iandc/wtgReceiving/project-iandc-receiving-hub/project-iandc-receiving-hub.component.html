@@ -1,0 +1,87 @@
+<p-fluid>
+</p-fluid>
+<p-toast></p-toast>
+<div class="card">
+    <p-table #dt1 [value]="projectList" dataKey="SlNo" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="10"
+        stripedRows [rowHover]="true" [showGridlines]="true" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" responsiveLayout="scroll"
+        [expandedRowKeys]="expandedRowsKeys" (onRowExpand)="onRowExpand($event)"
+        (onRowCollapse)="onRowCollapse($event)">
+
+        <!-- Caption -->
+        <ng-template pTemplate="caption">
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <p-iconfield iconPosition="left" class="mr-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" placeholder="Search keyword" />
+                </p-iconfield>
+                <button pButton label="Save" class="p-button-outlined mb-2 m-2" icon="pi pi-save"></button>
+            </div>
+        </ng-template>
+
+        <!-- Header -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th> <!-- Expand icon column -->
+                <th>Sl. No.</th>
+                <th>Hub Serial No</th>
+                <th>Hub Delivery at Site Date</th>
+                <th>Hub Frame Return Date</th>
+            </tr>
+        </ng-template>
+
+        <!-- Body -->
+        <ng-template pTemplate="body" let-project let-expanded="expanded">
+            <tr>
+                <td>
+                    <button type="button" pButton pRipple [pRowToggler]="project"
+                        class="p-button-text p-button-rounded p-button-plain"
+                        [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                    </button>
+                </td>
+                <td>{{ project.SlNo }}</td>
+                <td style="min-width: 7rem">{{ project.Pcode }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </ng-template>
+
+        <!-- Expanded Row -->
+        <ng-template pTemplate="rowexpansion" #expandedrow let-project>
+            <tr *ngFor="let exp of valuesofEXP">
+                <td colspan="2" style="text-align: center;">
+                    {{exp.name}}
+                </td>
+                <td>
+                    <div>
+                        <label for="anchor-cage-serial" class="block mb-2 font-semibold">Hub Serial No</label>
+                        <input type="text" pInputText id="anchor-cage-serial" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Hub Delivery at Site Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Hub Frame Return Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <!-- Empty message -->
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6" class="text-center">No projects found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+</div>

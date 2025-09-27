@@ -1,0 +1,328 @@
+<p-fluid>
+    <!--  <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-full">
+            <div class="card flex flex-col gap-4">
+                <div class="font-semibold text-xl">Production Manager</div>
+                <div class="flex flex-wrap gap-6">
+                    <div class="flex flex-col grow basis-0 gap-2">
+                        <label for="name2">P-Code</label>
+                        <input pInputText id="name2" type="text" />
+                    </div>
+                    <div class="flex flex-col grow basis-0 gap-2">
+                        <label for="email2">No. Of WTG's</label>
+                        <input pInputText id="email2" type="text" />
+                    </div>
+                    <div class="flex flex-col grow basis-0 gap-2">
+                        <label for="email2">Planning Date</label>
+                        <p-datepicker [iconDisplay]="'input'" [showIcon]="true" />
+                    </div>
+                </div>
+                <p-divider />
+                <div>
+                    <p-accordion value="0">
+                        <p-accordion-panel value="0">
+                            <p-accordion-header>Production I</p-accordion-header>
+                            <p-accordion-content>
+                                <p-table #dt1 [value]="projectList" [paginator]="true"
+                                    [rowsPerPageOptions]="[5, 10, 20]" stripedRows dataKey="id" [rows]="10"
+                                    [rowHover]="true" [showGridlines]="true" [showCurrentPageReport]="true"
+                                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [paginator]="true"
+                                    responsiveLayout="scroll">
+                                    <ng-template #caption>
+                                        <div class="flex justify-between items-center flex-column sm:flex-row">
+                                            <p-iconfield iconPosition="left" class="mr-auto">
+                                                <p-inputicon>
+                                                    <i class="pi pi-search"></i>
+                                                </p-inputicon>
+                                                <input pInputText type="text"
+                                                    placeholder="Search keyword" />
+                                            </p-iconfield>
+
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #header>
+                                        <tr>
+                                            <th>Sl. No.</th>
+                                            <th>Nacelle </th>
+                                            <th>Hub</th>
+                                            <th>Blade</th>
+                                            <th>Tower</th>
+                                            <th>Anchor Stage</th>
+                                            <th>Site Accessories</th>
+                                            <th>Converter Panel</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template #body let-customer>
+                                        <tr>
+
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template #emptymessage>
+                                        <tr>
+                                            <td colspan="8" style="text-align: center;">No Record found.</td>
+                                        </tr>
+                                    </ng-template>
+
+                                </p-table>
+                            </p-accordion-content>
+                        </p-accordion-panel>
+
+                        <p-accordion-panel value="1">
+                            <p-accordion-header>Inspection II</p-accordion-header>
+                            <p-accordion-content>
+                                <p-table #dt1 [value]="projectList" [paginator]="true"
+                                    [rowsPerPageOptions]="[5, 10, 20]" stripedRows dataKey="id" [rows]="10"
+                                    [rowHover]="true" [showGridlines]="true" [showCurrentPageReport]="true"
+                                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [paginator]="true"
+                                    responsiveLayout="scroll">
+                                    <ng-template #caption>
+                                        <div class="flex justify-between items-center flex-column sm:flex-row">
+                                            <p-iconfield iconPosition="left" class="mr-auto">
+                                                <p-inputicon>
+                                                    <i class="pi pi-search"></i>
+                                                </p-inputicon>
+                                                <input pInputText type="text"
+                                                    placeholder="Search keyword" />
+                                            </p-iconfield>
+
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #header>
+                                        <tr>
+                                            <th>Sl. No.</th>
+                                            <th>Nacelle </th>
+                                            <th>Hub</th>
+                                            <th>Blade</th>
+                                            <th>Tower</th>
+                                            <th>Anchor Stage</th>
+                                            <th>Site Accessories</th>
+                                            <th>Converter Panel</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template #body let-customer>
+                                        <tr>
+
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template #emptymessage>
+                                        <tr>
+                                            <td colspan="8" style="text-align: center;">No Record found</td>
+                                        </tr>
+                                    </ng-template>
+
+                                </p-table>
+                            </p-accordion-content>
+                        </p-accordion-panel>
+
+                        <p-accordion-panel value="2">
+                            <p-accordion-header>Delivery III</p-accordion-header>
+                            <p-accordion-content>
+                                <p-table #dt1 [value]="projectList" [paginator]="true"
+                                    [rowsPerPageOptions]="[5, 10, 20]" stripedRows dataKey="id" [rows]="10"
+                                    [rowHover]="true" [showGridlines]="true" [showCurrentPageReport]="true"
+                                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                                    [paginator]="true"
+                                    responsiveLayout="scroll">
+                                    <ng-template #caption>
+                                        <div class="flex justify-between items-center flex-column sm:flex-row">
+                                            <p-iconfield iconPosition="left" class="mr-auto">
+                                                <p-inputicon>
+                                                    <i class="pi pi-search"></i>
+                                                </p-inputicon>
+                                                <input pInputText type="text"
+                                                    placeholder="Search keyword" />
+                                            </p-iconfield>
+
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #header>
+                                        <tr>
+                                            <th>Sl. No.</th>
+                                            <th>Nacelle </th>
+                                            <th>Hub</th>
+                                            <th>Blade</th>
+                                            <th>Tower</th>
+                                            <th>Anchor Stage</th>
+                                            <th>Site Accessories</th>
+                                            <th>Converter Panel</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template #body let-customer>
+                                        <tr>
+
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template #emptymessage>
+                                        <tr>
+                                            <td colspan="8" style="text-align: center;">No Record found</td>
+                                        </tr>
+                                    </ng-template>
+
+                                </p-table>
+                            </p-accordion-content>
+                        </p-accordion-panel>
+                    </p-accordion>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+</p-fluid>
+<p-toast></p-toast>
+<div class="card">
+    <!-- <p-table #dt1 [value]="projectList" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" stripedRows  dataKey="id" [rows]="10"  [rowHover]="true" [showGridlines]="true"
+     [showCurrentPageReport]="true"  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [paginator]="true" 
+        responsiveLayout="scroll">
+        <ng-template #caption>
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <p-iconfield iconPosition="left" class="mr-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text"  placeholder="Search keyword" />
+                </p-iconfield>
+                <button pButton label="Save " class="p-button-outlined mb-2" icon="pi pi-save"></button>
+            </div>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th>Sl. No.</th>
+                <th>P-code </th>
+                <th>Full Project Description</th>
+                <th>State</th>
+                <th>Activity</th>
+                <th>Project QTY</th>
+                <th>Production Plan</th>
+                <th>Production Actual </th>
+                <th>Production LE</th>
+                <th>COC Plan</th>
+                <th>COC Actual </th>
+                <th>COC LE</th>
+                <th>Inspection Plan</th>
+                <th>Inspection Actual </th>
+                <th>Inspection LE</th>
+                
+            </tr>
+        </ng-template>
+        <ng-template #body let-customer>
+            <tr>
+                <td>{{customer.SlNo}}</td>
+                <td style="min-width: 7rem">{{customer.Pcode}}</td>
+                <td style="min-width: 7rem">{{customer.FPD}}</td>
+                <td style="min-width: 7rem">{{customer.State}}</td>
+                <td style="min-width: 12rem">{{customer.SiteName}}</td>
+                <td style="min-width: 5rem"><input type="text" pInputText  placeholder="Enter QTY"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                <td style="min-width: 10rem"><p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"/></td>
+                
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="8" style="text-align: center;">No customers found.</td>
+            </tr>
+        </ng-template>
+        
+    </p-table>  -->
+
+    <p-table #dt1 [value]="projectList" dataKey="SlNo" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="10"
+        stripedRows [rowHover]="true" [showGridlines]="true" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" responsiveLayout="scroll"
+        [expandedRowKeys]="expandedRowsKeys" (onRowExpand)="onRowExpand($event)"
+        (onRowCollapse)="onRowCollapse($event)">
+
+        <!-- Caption -->
+        <ng-template pTemplate="caption">
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <p-iconfield iconPosition="left" class="mr-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" placeholder="Search keyword" />
+                </p-iconfield>
+                <button pButton label="Save" class="p-button-outlined mb-2 m-2" icon="pi pi-save"></button>
+            </div>
+        </ng-template>
+
+        <!-- Header -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th> <!-- Expand icon column -->
+                <th>Sl. No.</th>
+                <th>Nacelle Serial No</th>
+                <th>Nacelle Delivery at Site Date</th>
+                <th>Nacelle Frame Return Date</th>
+                <th>Gearbox Rotating Tool</th>
+            </tr>
+        </ng-template>
+
+        <!-- Body -->
+        <ng-template pTemplate="body" let-project let-expanded="expanded">
+            <tr>
+                <td>
+                    <button type="button" pButton pRipple [pRowToggler]="project"
+                        class="p-button-text p-button-rounded p-button-plain"
+                        [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                    </button>
+                </td>
+                <td>{{ project.SlNo }}</td>
+                <td style="min-width: 7rem">{{ project.Pcode }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </ng-template>
+
+        <!-- Expanded Row -->
+        <ng-template pTemplate="rowexpansion" #expandedrow let-project>
+            <tr *ngFor="let exp of valuesofEXP">
+                <td colspan="2" style="text-align: center;">
+                    {{exp.name}}
+                </td>
+                <td>
+                    <div>
+                        <label for="anchor-cage-serial" class="block mb-2 font-semibold">Nacelle Serial No</label>
+                        <input type="text" pInputText id="anchor-cage-serial" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Nacelle Delivery at Site Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Nacelle Frame Return Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Gearbox Rotating Tool</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <!-- Empty message -->
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6" class="text-center">No projects found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+</div>

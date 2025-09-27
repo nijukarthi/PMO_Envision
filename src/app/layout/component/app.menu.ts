@@ -33,7 +33,50 @@ export class AppMenu {
                     { label: 'Direct Update Tool', icon: 'pi pi-fw pi-hammer', routerLink: ['/app/dgrtools'],
                     },
                     { label: 'Organisation Structure', icon: 'pi pi-fw pi-id-card', routerLink: ['/app/uikit/siteengineer'],
-                    },{ label: 'Key Statics', icon: 'pi pi-fw pi-id-card'
+                    },
+                    {
+                        label: 'Procurement',
+                        icon: 'pi pi-fw pi-server',
+                    },
+                    {
+                        label: 'Resource Pool',
+                        icon: 'pi pi-fw pi-database',
+                        items: [
+                            {
+                                label: 'People',
+                                icon: 'pi pi-fw pi-id-card',
+                                items: [
+                                    {
+                                        label: 'Training',
+                                        items: [
+                                            {
+                                                label: 'People'
+                                            },
+                                            {
+                                                label: 'Training Status'
+                                            },
+                                            {
+                                                label: 'Skill Matrix'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Tools',
+                                icon: 'pi pi-fw pi-id-card',
+                            },
+                            {
+                                label: 'Spares',
+                                icon: 'pi pi-fw pi-id-card',
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Site Administration',
+                        icon: 'pi pi-fw pi-crown',
+                    },
+                    { label: 'Key Statics', icon: 'pi pi-fw pi-key'
                     }
                 ],
                 //visible: this.siteManager 
@@ -56,7 +99,7 @@ export class AppMenu {
                 items: [
                     {
                         label: "Onshore Wind",
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-fw pi-compass',
                          items: [
                             {
                                 label: 'Projects',
@@ -243,7 +286,7 @@ export class AppMenu {
                                                 ]
                                             },
                                             {
-                                                label: 'WTG Delivery',
+                                                label: 'WTG Dispatch',
                                                 icon: 'pi pi-fw pi-bookmark',
                                                 items: [
                                                     {
@@ -346,48 +389,6 @@ export class AppMenu {
                                             },
                                         ]
                                     },
-                                    {
-                                        label: 'CASH IN',
-                                        icon: 'pi pi-fw pi-box',
-                                        items: [
-                                            {
-                                                label: 'Projects',
-                                                icon: 'pi pi-fw pi-bookmark',
-                                                items: [
-                                                    {
-                                                        label: 'Advance',
-                                                        icon: 'pi pi-fw pi-bookmark',
-                                                    },
-                                                    {
-                                                        label: 'Milestones',
-                                                        icon: 'pi pi-fw pi-bookmark',
-                                                        items: [
-                                                            {
-                                                                label: 'EWPT',
-                                                                icon: 'pi pi-fw pi-bookmark',
-                                                            },
-                                                            {
-                                                                label: 'EWPS',
-                                                                icon: 'pi pi-fw pi-bookmark',
-                                                            },
-                                                        ]
-                                                    },
-                                                    {
-                                                        label: 'After Sales',
-                                                        icon: 'pi pi-fw pi-bookmark',
-                                                    },
-                                                ]
-                                            },
-                                            {
-                                                label: 'O&M',
-                                                icon: 'pi pi-fw pi-bookmark',
-                                            },
-                                            {
-                                                label: 'BESS',
-                                                icon: 'pi pi-fw pi-bookmark',
-                                            }
-                                        ]
-                                    }
                             /* {
                                 label: 'Delivery Manager',
                                 icon: 'pi pi-building-columns',
@@ -506,11 +507,7 @@ export class AppMenu {
                                      {
                                          label: 'BESS I&C',
                                          icon: 'pi pi-fw pi-user',
-                                     },
-                                     {
-                                         label: 'BESS Cash',
-                                         icon: 'pi pi-fw pi-user',
-                                     },
+                                     }
                            /*  {
                                 label: 'Delivery Manager',
                                 icon: 'pi pi-building-columns',
@@ -700,10 +697,14 @@ export class AppMenu {
                 visible: this.users
             },
             {
-                label: 'Project Management',
+                label: 'Project Deliverables',
                 icon: 'pi pi-fw pi-briefcase',
                 routerLink: ['//pages'],
                 items: [
+                    {
+                        label: 'Operations',
+                        icon: 'pi pi-fw pi-box',
+                        items: [
                    /*  {
                         label: 'Global Report',
                         icon: 'pi pi-fw pi-globe',
@@ -711,7 +712,7 @@ export class AppMenu {
                     }, */
                     {
                         label: "Onshore Wind",
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-fw pi-compass',
                          items: [
                             {
                                 label: 'Projects',
@@ -867,80 +868,88 @@ export class AppMenu {
                                                     {
                                                         label: 'Anchor cage',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/anchor-cage'],
                                                     },
                                                     {
                                                         label: 'Nacelle',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/nacelle'],
                                                     },
                                                     {
                                                         label: 'HUB',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/hub'],
                                                     },
                                                     {
                                                         label: 'Blade',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/blade'],
                                                     },
                                                     {
                                                         label: 'Tower',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/tower']
                                                     },
                                                     {
                                                         label: 'Converter Panel',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/converter-panel']
                                                     },
                                                     {
                                                         label: 'Site Accessories',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/site-accessories']
                                                     },
                                                     {
                                                         label: 'SCADA',
                                                         icon: 'pi pi-fw pi-bookmark',
-                                                        routerLink: ['/app/uikit/productionManager'],
+                                                        routerLink: ['/app/uikit/project/scada']
                                                     }
                                                 ]
                                             },
                                             {
-                                                label: 'WTG Delivery',
+                                                label: 'WTG Dispatch',
                                                 icon: 'pi pi-fw pi-bookmark',
                                                 items: [
                                                     {
                                                         label: 'Anchor cage',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/anchor-cage']
                                                     },
                                                     {
                                                         label: 'Nacelle',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/nacelle']
                                                     },
                                                     {
                                                         label: 'HUB',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/hub']
                                                     },
                                                     {
                                                         label: 'Blade',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/blade']
                                                     },
                                                     {
                                                         label: 'Tower',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/tower']
                                                     },
                                                     {
                                                         label: 'Converter Panel',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/converter-panel']
                                                     },
                                                     {
                                                         label: 'Site Accessories',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/site-accessories']
                                                     },
                                                     {
                                                         label: 'SCADA',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/dispatch/scada']
                                                     }
                                                 ]
                                             }
@@ -957,22 +966,27 @@ export class AppMenu {
                                                     {
                                                         label: 'Anchor cage',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/anchor-cage']
                                                     },
                                                     {
                                                         label: 'Nacelle',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/nacelle']
                                                     },
                                                     {
                                                         label: 'HUB',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/hub']
                                                     },
                                                     {
                                                         label: 'Blade',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/blade']
                                                     },
                                                     {
                                                         label: 'Tower',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/tower']
                                                     },
                                                     {
                                                         label: 'Converter Panel',
@@ -1010,48 +1024,48 @@ export class AppMenu {
                                             },
                                         ]
                                     },
-                                    {
-                                        label: 'CASH IN',
-                                        icon: 'pi pi-fw pi-box',
-                                        items: [
-                                            {
-                                                label: 'Projects',
-                                                icon: 'pi pi-fw pi-bookmark',
-                                                items: [
-                                                    {
-                                                        label: 'Advance',
-                                                        icon: 'pi pi-fw pi-bookmark',
-                                                    },
-                                                    {
-                                                        label: 'Milestones',
-                                                        icon: 'pi pi-fw pi-bookmark',
-                                                        items: [
-                                                            {
-                                                                label: 'EWPT',
-                                                                icon: 'pi pi-fw pi-bookmark',
-                                                            },
-                                                            {
-                                                                label: 'EWPS',
-                                                                icon: 'pi pi-fw pi-bookmark',
-                                                            },
-                                                        ]
-                                                    },
-                                                    {
-                                                        label: 'After Sales',
-                                                        icon: 'pi pi-fw pi-bookmark',
-                                                    },
-                                                ]
-                                            },
-                                            {
-                                                label: 'O&M',
-                                                icon: 'pi pi-fw pi-bookmark',
-                                            },
-                                            {
-                                                label: 'BESS',
-                                                icon: 'pi pi-fw pi-bookmark',
-                                            }
-                                        ]
-                                    }
+                                    // {
+                                    //     label: 'CASH IN',
+                                    //     icon: 'pi pi-fw pi-box',
+                                    //     items: [
+                                    //         {
+                                    //             label: 'Projects',
+                                    //             icon: 'pi pi-fw pi-bookmark',
+                                    //             items: [
+                                    //                 {
+                                    //                     label: 'Advance',
+                                    //                     icon: 'pi pi-fw pi-bookmark',
+                                    //                 },
+                                    //                 {
+                                    //                     label: 'Milestones',
+                                    //                     icon: 'pi pi-fw pi-bookmark',
+                                    //                     items: [
+                                    //                         {
+                                    //                             label: 'EWPT',
+                                    //                             icon: 'pi pi-fw pi-bookmark',
+                                    //                         },
+                                    //                         {
+                                    //                             label: 'EWPS',
+                                    //                             icon: 'pi pi-fw pi-bookmark',
+                                    //                         },
+                                    //                     ]
+                                    //                 },
+                                    //                 {
+                                    //                     label: 'After Sales',
+                                    //                     icon: 'pi pi-fw pi-bookmark',
+                                    //                 },
+                                    //             ]
+                                    //         },
+                                    //         {
+                                    //             label: 'O&M',
+                                    //             icon: 'pi pi-fw pi-bookmark',
+                                    //         },
+                                    //         {
+                                    //             label: 'BESS',
+                                    //             icon: 'pi pi-fw pi-bookmark',
+                                    //         }
+                                    //     ]
+                                    // }
                             /* {
                                 label: 'Delivery Manager',
                                 icon: 'pi pi-building-columns',
@@ -1125,8 +1139,10 @@ export class AppMenu {
                         label: "BESS",
                         icon: 'pi pi-fw pi-user',
                         items:[
-                            {label:'BESS Project',
-                                 items: [
+                            {   
+                                label:'BESS Project',
+                                icon: 'pi pi-fw pi-sign-in',
+                                items: [
                             {
                                 label: 'BESS Planning',
                                 icon: 'pi pi-fw pi-sign-in',
@@ -1170,11 +1186,7 @@ export class AppMenu {
                                      {
                                          label: 'BESS I&C',
                                          icon: 'pi pi-fw pi-user',
-                                     },
-                                     {
-                                         label: 'BESS Cash',
-                                         icon: 'pi pi-fw pi-user',
-                                     },
+                                     }
                            /*  {
                                 label: 'Delivery Manager',
                                 icon: 'pi pi-building-columns',
@@ -1195,16 +1207,229 @@ export class AppMenu {
                             },
                             
                             {label:'BESS O&M',
+                                icon: 'pi pi-fw pi-cog',
                                 items:[
                                     {label:'BESS O&M Plan'},
                                     {label:'BESS Warranty'},
                                     {label:'BESS LTSA'},
                             ]
+                            },
+                            {
+                                label: 'BESS TSA',
+                                icon: 'pi pi-fw pi-hammer',
+                                items: [
+                                    {
+                                        label: 'BESS Production',
+                                        icon: 'pi pi-fw pi-box',
+                                        items: [
+                                            {
+                                                label: 'DC',
+                                                icon: 'pi pi-fw pi-inbox'
+                                            },
+                                            {
+                                                label: 'PCS',
+                                                icon: 'pi pi-fw pi-inbox'
+                                            },
+                                            {
+                                                label: 'SCADA',
+                                                icon: 'pi pi-fw pi-inbox'
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        label: 'BESS Dispatch',
+                                        icon: 'pi pi-fw pi-box'
+                                    },
+                                    {
+                                        label: 'Foundation & Installation',
+                                        icon: 'pi pi-fw pi-box'
+                                    },
+                                    {
+                                        label: 'Electrical Installation',
+                                        icon: 'pi pi-fw pi-box'
+                                    },
+                                    {
+                                        label: 'Commissioning',
+                                        icon: 'pi pi-fw pi-box'
+                                    }
+                                ]
                             }
                         ]
                        
-                    }
+                    },
                    
+                ]
+                    },
+                    {
+                        label: 'Cash Flow',
+                        icon: 'pi pi-fw pi-wallet',
+                        items: [
+                            {
+                                label: 'Cash In',
+                                icon: 'pi pi-fw pi-sign-in',
+                                items: [
+                                    {
+                                        label: 'Onshore Wind Cash In',
+                                        icon: 'pi pi-fw pi-money-bill',
+                                        items: [
+                                            {
+                                                label: 'Projects Cash In',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                                items: [
+                                                    {
+                                                        label: 'Advance',
+                                                        icon: 'pi pi-fw pi-bookmark',
+                                                    },
+                                                    {
+                                                        label: 'Milestones',
+                                                        icon: 'pi pi-fw pi-bookmark',
+                                                        items: [
+                                                            {
+                                                                label: 'EWPT',
+                                                                icon: 'pi pi-fw pi-bookmark',
+                                                            },
+                                                            {
+                                                                label: 'EWPS',
+                                                                icon: 'pi pi-fw pi-bookmark',
+                                                            },
+                                                        ]
+                                                    },
+                                                    {
+                                                        label: 'After Sales',
+                                                        icon: 'pi pi-fw pi-bookmark',
+                                                    },
+                                                ]
+                                            },
+                                            {
+                                                label: 'O&M Cash In',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'BESS Cash In',
+                                        icon: 'pi pi-fw pi-money-bill',
+                                        items: [
+                                            {
+                                                label: 'Projects Cash In',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                                items: [
+                                                    {
+                                                        label: 'Advance',
+                                                        icon: 'pi pi-fw pi-bookmark',
+                                                    },
+                                                    {
+                                                        label: 'Milestones',
+                                                        icon: 'pi pi-fw pi-bookmark',
+                                                        items: [
+                                                            {
+                                                                label: 'EWPT',
+                                                                icon: 'pi pi-fw pi-bookmark',
+                                                            },
+                                                            {
+                                                                label: 'EWPS',
+                                                                icon: 'pi pi-fw pi-bookmark',
+                                                            },
+                                                        ]
+                                                    },
+                                                    {
+                                                        label: 'After Sales',
+                                                        icon: 'pi pi-fw pi-bookmark',
+                                                    },
+                                                ]
+                                            },
+                                            {
+                                                label: 'O&M Cash In',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                            },
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Cash Out',
+                                icon: 'pi pi-fw pi-sign-in',
+                                items: [
+                                    {
+                                        label: 'Onshore Wind Cash Out',
+                                        icon: 'pi pi-fw pi-money-bill',
+                                        items: [
+                                            {
+                                                label: 'Projects Cash Out',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                                // items: [
+                                                //     {
+                                                //         label: 'Advance',
+                                                //         icon: 'pi pi-fw pi-bookmark',
+                                                //     },
+                                                //     {
+                                                //         label: 'Milestones',
+                                                //         icon: 'pi pi-fw pi-bookmark',
+                                                //         items: [
+                                                //             {
+                                                //                 label: 'EWPT',
+                                                //                 icon: 'pi pi-fw pi-bookmark',
+                                                //             },
+                                                //             {
+                                                //                 label: 'EWPS',
+                                                //                 icon: 'pi pi-fw pi-bookmark',
+                                                //             },
+                                                //         ]
+                                                //     },
+                                                //     {
+                                                //         label: 'After Sales',
+                                                //         icon: 'pi pi-fw pi-bookmark',
+                                                //     },
+                                                // ]
+                                            },
+                                            {
+                                                label: 'O&M Cash Out',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'BESS Cash Out',
+                                        icon: 'pi pi-fw pi-money-bill',
+                                        items: [
+                                            {
+                                                label: 'Projects Cash Out',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                                // items: [
+                                                //     {
+                                                //         label: 'Advance',
+                                                //         icon: 'pi pi-fw pi-bookmark',
+                                                //     },
+                                                //     {
+                                                //         label: 'Milestones',
+                                                //         icon: 'pi pi-fw pi-bookmark',
+                                                //         items: [
+                                                //             {
+                                                //                 label: 'EWPT',
+                                                //                 icon: 'pi pi-fw pi-bookmark',
+                                                //             },
+                                                //             {
+                                                //                 label: 'EWPS',
+                                                //                 icon: 'pi pi-fw pi-bookmark',
+                                                //             },
+                                                //         ]
+                                                //     },
+                                                //     {
+                                                //         label: 'After Sales',
+                                                //         icon: 'pi pi-fw pi-bookmark',
+                                                //     },
+                                                // ]
+                                            },
+                                            {
+                                                label: 'O&M Cash Out',
+                                                icon: 'pi pi-fw pi-bookmark',
+                                            },
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             },
             // {
@@ -1259,6 +1484,29 @@ export class AppMenu {
                     },
                 ]
             }, */
+            {
+                label: 'Configuration',
+                items: [
+                    {
+                        label: 'Create New Project',
+                        icon: 'pi pi-fw pi-user-plus',
+                    },
+                    {
+                        label: 'Masters',
+                        icon: 'pi pi-fw pi-server',
+                        items: [
+                            {
+                                label: 'Users',
+                                icon: 'pi pi-fw pi-user'
+                            },
+                            {
+                                label: 'Customers',
+                                icon: 'pi pi-fw pi-user'
+                            }
+                        ]
+                    }
+                ]
+            },
             {
                 label: 'Exit Portal',
                 items: [
