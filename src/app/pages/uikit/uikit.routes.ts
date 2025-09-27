@@ -50,6 +50,10 @@ import { ProjectIandcReceivingBladeComponent } from '../unikit/project/osw/iandc
 import { ProjectIandcReceivingNacelleComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-nacelle/project-iandc-receiving-nacelle.component';
 import { ProjectIandcReceivingHubComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-hub/project-iandc-receiving-hub.component';
 import { ProjectIandcReceivingTowerComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-tower/project-iandc-receiving-tower.component';
+import { ProjectIandcReceivingConverterpanelComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-converterpanel/project-iandc-receiving-converterpanel.component';
+import { ProjectIandcReceivingSiteaccessoriesComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-siteaccessories/project-iandc-receiving-siteaccessories.component';
+import { ProjectFoundationComponent } from '../unikit/project/osw/iandc/project-foundation/project-foundation.component';
+import { ProjectIandcHotoComponent } from '../unikit/project/osw/iandc/project-iandc-hoto/project-iandc-hoto.component';
 
 export default [
     { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemo },
@@ -85,6 +89,10 @@ export default [
     { path: 'project/receiving/hub', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingHubComponent },
     { path: 'project/receiving/blade', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingBladeComponent },
     { path: 'project/receiving/tower', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingTowerComponent },
+    { path: 'project/receiving/converter-panel', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingConverterpanelComponent },
+    { path: 'project/receiving/site-accessories', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingSiteaccessoriesComponent },
+    { path: 'project/foundation', data: { breadcrumb: 'Site Engineer' }, component: ProjectFoundationComponent },
+    { path: 'project/hoto', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcHotoComponent },
     { path: 'projectManager', data: { breadcrumb: 'Site Engineer' }, component: ProjectManagerComponent },
     { path: 'clusterManager', data: { breadcrumb: 'Site Engineer' }, component: ClusterManagerComponent },
     { path: 'siteManager', data: { breadcrumb: 'Site Engineer' }, component: HodSiteManagerComponent },

@@ -991,10 +991,12 @@ export class AppMenu {
                                                     {
                                                         label: 'Converter Panel',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/converter-panel']
                                                     },
                                                     {
                                                         label: 'Site Accessories',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/site-accessories']
                                                     },
                                                     {
                                                         label: 'SCADA',
@@ -1005,6 +1007,7 @@ export class AppMenu {
                                             {
                                                 label: 'Foundation',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/foundation']
                                             },
                                             {
                                                 label: 'Installation',
@@ -1021,6 +1024,7 @@ export class AppMenu {
                                             {
                                                 label: 'HOTO',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/hoto']
                                             },
                                         ]
                                     },
