@@ -1490,6 +1490,7 @@ export class AppMenu {
                     {
                         label: 'Create New Project',
                         icon: 'pi pi-fw pi-user-plus',
+                        routerLink: ['/app/uikit/planningManager']
                     },
                     {
                         label: 'Masters',
