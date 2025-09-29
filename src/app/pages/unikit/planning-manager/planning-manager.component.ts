@@ -315,22 +315,27 @@ const wtgsArray = this.spvForm.get('wtgs') as FormArray;
     row.get('tower')?.disable();
     row.get('grid')?.disable();
     row.get('ppa')?.disable();
+    row.get('totalCapacity')?.disable();
     // qty stays editable
   }
 
-  deleteRow(index: number) {
+  deleteRow(index: number,action:any) {
   if (index > 0) {
     this.wtgs.removeAt(index);
   }
-   if (this.wtgs.length === 1) {
-      this.enableRow(0);
-    }
+  if(action == 'delete'){
+    if (this.wtgs.length === 1) {
+       this.enableRow(0);
+     }
+  }
+       this.enableRow(0);
+
 }
 
 enableRow(index: number) {
   const row = this.wtgs.at(index) as FormGroup;
   Object.keys(row.controls).forEach(ctrl => {
-    if (ctrl !== 'qty') {
+    if (ctrl !== 'totalCapacity') {
       row.get(ctrl)?.enable();
     }
   });
@@ -375,16 +380,19 @@ enableRow(index: number) {
   saveSPV(){
     try{
       this.spvForm.reset();
-       if (this.wtgs.length > 0) {
+       /* if (this.wtgs.length > 0) {
     const prevRow = this.wtgs.at(this.wtgs.length - 1) as FormGroup;
     prevRow.reset();
-       }
+       } */
+
 
         if (this.wtgs.length > 0) {
-    for (let i = 1; i <= this.wtgs.length ;i++){
-      this.deleteRow(i)
+    for (let i = this.wtgs.length - 1; i >= 0; i--){
+      this.deleteRow(i,'')
     }
        }
+    this.spvForm.get('totalCapacity')?.disable();
+
 
     this.messageService.add({ severity: 'success', summary: 'Success', detail: `Project Created Successfully`, life: 3000 });
 

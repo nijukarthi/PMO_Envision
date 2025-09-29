@@ -468,7 +468,7 @@
                                         <p-button icon="pi pi-plus" severity="info" [rounded]="true"
                                             (click)="addRow(); lockRow(rowIndex,customer)" [disabled]="disableAddBtn" />
                                         <p-button *ngIf="rowIndex > 0" icon="pi pi-trash" severity="danger" [rounded]="true"
-                                            (click)="deleteRow(rowIndex)"></p-button>
+                                            (click)="deleteRow(rowIndex,'delete')"></p-button>
                                     </td>
     
                                 </tr>
