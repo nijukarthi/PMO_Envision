@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Shared } from '../../../services/shared/shared.module';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -174,7 +174,13 @@ states = [
   spvOptions:any = [];
   projectQTY:any = "";
   pCode:any = "";
-  WTGOptions:any = [];
+  WTGOptions:any = [
+    {label:'EN132',value:'EN132'},
+    {label:'EN156',value:'EN156'},
+    {label:'EN182',value:'EN182'},
+    {label:'EN156(NS)',value:'EN156(NS)'},
+    {label:'EN182(NS)',value:'EN182(NS)'}
+  ];
  capacityOptions:any = [
       {label:'2.5', value:'2.5'},
       {label:'3.5', value:'3.5'},
@@ -200,6 +206,8 @@ states = [
  errorMessage:any = "";
  disableAddBtn:boolean = false;
  cityInfo:any = "";
+ overallTotalCapacity:any = 0;
+ towerScopeChecked :boolean = true;
   constructor(private fb: FormBuilder,private messageService: MessageService){}
 
   ngOnInit(){
@@ -209,6 +217,7 @@ states = [
     });
     
     this.addRow(true);
+    this.spvForm.get('totalCapacity')?.disable();
   }
 
    get wtgs(): FormArray {
@@ -219,26 +228,63 @@ states = [
   return this.wtgs.at(index) as FormGroup;
 }
 
-  addRow(isFirst: boolean = false) {
+calculateTotalCapacity(){
+  try{
+const wtgsArray = this.spvForm.get('wtgs') as FormArray;
+  let overallTotal = 0;
 
-     /* if (this.wtgs.length >= this.projectQTY && this.projectQTY > 0) {
-    this.errorMessage = `You can add only ${this.projectQTY} rows based on Project QTY.`;
-    return;
-  } */
+  wtgsArray.controls.forEach((row: AbstractControl) => {
+    const capacity = Number(row.get('capacity')?.value) || 0;
+    const qty = Number(row.get('qty')?.value) || 0;
+    const total = capacity * qty;
+
+    // ✅ patch row total
+    row.get('totalCapacity')?.setValue(total, { emitEvent: false });
+
+    overallTotal += total;
+  });
+
+  // ✅ keep total in component variable
+  this.overallTotalCapacity = overallTotal;
+
+  }catch(e){
+
+  }
+}
+
+  addRow(isFirst: boolean = false) {
 
     const row = this.fb.group({
       spv: [{ value: null, disabled: !isFirst }, Validators.required],
+      shipAddress: [{ value: null, disabled: !isFirst }, Validators.required],
       wtgType: [{ value: null, disabled: !isFirst }, Validators.required],
       capacity: [{ value: null, disabled: !isFirst }, Validators.required],
       tower: [{ value: null, disabled: !isFirst }, Validators.required],
       grid: [{ value: null, disabled: !isFirst }, Validators.required],
       ppa: [{ value: null, disabled: !isFirst }, Validators.required],
+      totalCapacity: [{ value: null, disabled: true }, Validators.required],
       qty: [null, Validators.required] 
     });
 
     row.get('qty')?.valueChanges.subscribe(() => {
     this.validateQtyTotal();
   });
+
+  row.get('capacity')?.valueChanges.subscribe(() => this.calculateTotalCapacity());
+
+  if (this.wtgs.length > 0) {
+    const prevRow = this.wtgs.at(this.wtgs.length - 1) as FormGroup;
+    row.patchValue({
+      spv: prevRow.get('spv')?.value,
+      shipAddress: prevRow.get('shipAddress')?.value,
+      wtgType: prevRow.get('wtgType')?.value,
+      capacity: prevRow.get('capacity')?.value,
+      tower: prevRow.get('tower')?.value,
+      grid: prevRow.get('grid')?.value,
+      ppa: prevRow.get('ppa')?.value,
+      // ⚠️ don’t patch totalCapacity (it will be recalculated)
+    });
+  }
 
     this.wtgs.push(row);
   }
@@ -260,9 +306,10 @@ states = [
   }
 }
 
-  lockRow(index: any) {
+  lockRow(index: any,val:any) {
     const row = this.wtgs.at(index) as FormGroup;
     row.get('spv')?.disable();
+    row.get('shipAddress')?.disable();
     row.get('wtgType')?.disable();
     row.get('capacity')?.disable();
     row.get('tower')?.disable();
@@ -317,9 +364,31 @@ enableRow(index: number) {
       var projectQTY = this.projectQTY;
       for (let i = 1; i <= projectQTY; i++) {
             this.spvOptions.push({ label: 'SPV ' + i, value: 'SPV ' + i });
-            this.WTGOptions.push({ label: 'WTG ' + i, value: 'WTG ' + i });
+           // this.WTGOptions.push({ label: 'WTG ' + i, value: 'WTG ' + i });
         }
 
+    }catch(e){
+
+    }
+  }
+
+  saveSPV(){
+    try{
+      this.spvForm.reset();
+       if (this.wtgs.length > 0) {
+    const prevRow = this.wtgs.at(this.wtgs.length - 1) as FormGroup;
+    prevRow.reset();
+       }
+
+        if (this.wtgs.length > 0) {
+    for (let i = 1; i <= this.wtgs.length ;i++){
+      this.deleteRow(i)
+    }
+       }
+
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: `Project Created Successfully`, life: 3000 });
+
+    
     }catch(e){
 
     }
