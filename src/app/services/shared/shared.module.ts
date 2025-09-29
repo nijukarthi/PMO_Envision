@@ -39,6 +39,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import {RouterModule} from '@angular/router';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { ChartModule } from 'primeng/chart';
+import { SelectButtonModule } from 'primeng/selectbutton';
 @NgModule({
   declarations: [],
   imports: [
@@ -82,7 +83,8 @@ import { ChartModule } from 'primeng/chart';
     ToolbarModule,
     RouterModule,
     OrganizationChartModule,
-    ChartModule
+    ChartModule,
+    SelectButtonModule
   ],
   providers:[
     MessageService,
