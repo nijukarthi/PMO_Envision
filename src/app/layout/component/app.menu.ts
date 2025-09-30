@@ -833,6 +833,7 @@ export class AppMenu {
                                             {
                                                 label: 'O&M Generations',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/o&m/generations']
                                             
                                             },
                                             {
@@ -991,10 +992,12 @@ export class AppMenu {
                                                     {
                                                         label: 'Converter Panel',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/converter-panel']
                                                     },
                                                     {
                                                         label: 'Site Accessories',
                                                         icon: 'pi pi-fw pi-bookmark',
+                                                        routerLink: ['/app/uikit/project/receiving/site-accessories']
                                                     },
                                                     {
                                                         label: 'SCADA',
@@ -1005,14 +1008,17 @@ export class AppMenu {
                                             {
                                                 label: 'Foundation',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/foundation']
                                             },
                                             {
                                                 label: 'Installation',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/installation']
                                             },
                                             {
                                                 label: 'Commissioning',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/commissioning']
                                             },
                                             {
                                                 label: 'STPT',
@@ -1021,6 +1027,7 @@ export class AppMenu {
                                             {
                                                 label: 'HOTO',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/hoto']
                                             },
                                         ]
                                     },

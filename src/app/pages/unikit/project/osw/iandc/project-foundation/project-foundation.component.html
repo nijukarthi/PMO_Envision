@@ -1,1 +1,309 @@
-<p>project-foundation works!</p>
+<p-fluid>
+</p-fluid>
+<p-toast></p-toast>
+<div class="card">
+    <p-table #dt1 [value]="projectList" dataKey="SlNo" [paginator]="true" [rowsPerPageOptions]="[5, 10, 20]" [rows]="10"
+        stripedRows [rowHover]="true" [showGridlines]="true" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" responsiveLayout="scroll"
+        [expandedRowKeys]="expandedRowsKeys" (onRowExpand)="onRowExpand($event)"
+        (onRowCollapse)="onRowCollapse($event)">
+
+        <!-- Caption -->
+        <ng-template pTemplate="caption">
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <p-iconfield iconPosition="left" class="mr-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" placeholder="Search keyword" />
+                </p-iconfield>
+                <button pButton label="Save" class="p-button-outlined mb-2 m-2" icon="pi pi-save"></button>
+            </div>
+        </ng-template>
+
+        <!-- Header -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th> <!-- Expand icon column -->
+                <th style="min-width: 10rem">Project Qty</th>
+                <th style="min-width: 10rem">Location No</th>
+                <th style="min-width: 10rem">Maximo Id</th>
+                <th style="min-width: 18rem">Anchor Cage Top Flange Serial No</th>
+                <th style="min-width: 20rem">Anchor Cage Bottom Flange Serial No</th>
+                <th style="min-width: 14rem">Soil Test Date</th>
+                <th style="min-width: 14rem">Design SBC</th>
+                <th style="min-width: 14rem">Actual SBC(t/m2)</th>
+                <th style="min-width: 14rem">Excavation Start Date</th>
+                <th style="min-width: 14rem">Excavation Finish Date</th>
+                <th style="min-width: 14rem">PCC Date</th>
+                <th style="min-width: 14rem">Bottom Flange Date</th>
+                <th style="min-width: 14rem">Top Flange Date</th>
+                <th style="min-width: 14rem">Steel placing Start Date</th>
+                <th style="min-width: 14rem">Steel placing Finish Date</th>
+                <th style="min-width: 14rem">Earthing Strip Date</th>
+                <th style="min-width: 14rem">Shuttering Date</th>
+                <th style="min-width: 16rem">Foundation Casting Raft Date</th>
+                <th style="min-width: 18rem">Foundation Casting Pedestal Plan</th>   
+                <th style="min-width: 18rem">Foundation Casting Pedestal LE</th>   
+                <th style="min-width: 18rem">Foundation Casting Pedestal Date</th>   
+                <th style="min-width: 18rem">Foundation 7 days cube test date</th>   
+                <th style="min-width: 18rem">Foundation 21 days cube test date</th>   
+                <th style="min-width: 18rem">Foundation 28 days cube test date</th>   
+                <th style="min-width: 14rem">Grouting date</th>  
+                <th style="min-width: 16rem">Grouting 7 days cube test date</th>
+                <th style="min-width: 18rem">Grouting 28 days cube test date</th>
+                <th style="min-width: 14rem">Backfilling date</th>
+                <th style="min-width: 14rem">Approach Road date</th>
+                <th style="min-width: 14rem">Crane Platform date</th>
+                <th style="min-width: 14rem">Loc Clear for Erection date</th>
+            </tr>
+        </ng-template>
+
+        <!-- Body -->
+        <ng-template pTemplate="body" let-project let-expanded="expanded">
+            <tr>
+                <td>
+                    <button type="button" pButton pRipple [pRowToggler]="project"
+                        class="p-button-text p-button-rounded p-button-plain"
+                        [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                    </button>
+                </td>
+                <td></td>
+                <td style="min-width: 7rem"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </ng-template>
+
+        <!-- Expanded Row -->
+        <ng-template pTemplate="rowexpansion" #expandedrow let-project>
+            <tr *ngFor="let exp of valuesofEXP">
+                <td colspan="1" style="text-align: center;">
+                    {{exp.name}}
+                </td>
+                <td>
+                    <div>
+                        <label for="anchor-cage-serial" class="block mb-2 font-semibold">Project Qty</label>
+                        <input type="text" pInputText id="anchor-cage-serial" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="location-no" class="block mb-2 font-semibold">Location No</label>
+                        <input type="text" pInputText id="location-no" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="location-no" class="block mb-2 font-semibold">Maximo Id</label>
+                        <input type="text" pInputText id="location-no" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="top-flange" class="block mb-2 font-semibold">Anchor Cage Top Flange Serial No</label>
+                        <input type="text" pInputText id="top-flange" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="bottom-flange" class="block mb-2 font-semibold">Anchor Cage Bottom Flange Serial No</label>
+                        <input type="text" pInputText id="bottom-flange" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Soil Test Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Design SBC</label>
+                        <input type="text" pInputText id="soil-test" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Actual SBC(t/m2)</label>
+                        <input type="text" pInputText id="soil-test" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Excavation Start Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Excavation Finish Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">PCC Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Bottom Flange Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Top Flange Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Steel Placing Start Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Steel Placing Finish Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Earthing Strip Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Shuttering Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Foundation Casting Raft Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Foundation Casting Pedestal Plan</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Foundation Casting Pedestal LE</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Foundation Casting Pedestal Date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Foundation 7 days cube test date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Foundation 21 days cube test date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Foundation 28 days cube test date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Grouting date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Grouting 7 days cube test date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Grouting 28 days cube test date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Backfilling date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Approach Road date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Crane Platform date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Loc Clear for Erection date</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <!-- Empty message -->
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6" class="text-center">No projects found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+</div>
