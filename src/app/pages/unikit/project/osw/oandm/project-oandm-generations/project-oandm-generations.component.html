@@ -25,21 +25,19 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th> <!-- Expand icon column -->
-                <th>Sl. No.</th>
-                <th style="min-width: 14rem">S1 Tower Section Serial No</th>
-                <th style="min-width: 14rem">S1 Delivery at Site Date</th>
-                <th style="min-width: 14rem">S2 Tower Section Serial No</th>
-                <th style="min-width: 14rem">S2 Delivery at Site Date</th>
-                <th style="min-width: 14rem">S3 Tower Section Serial No</th>
-                <th style="min-width: 14rem">S3 Delivery at Site Date</th>
-                <th style="min-width: 14rem">S4 Tower Section Serial No</th>
-                <th style="min-width: 14rem">S4 Delivery at Site Date</th>
-                <th style="min-width: 14rem">S5 Tower Section Serial No</th>
-                <th style="min-width: 14rem">S5 Delivery at Site Date</th>
-                <th style="min-width: 14rem">S6 Tower Section Serial No</th>
-                <th style="min-width: 14rem">S6 Delivery at Site Date</th>
-                <th style="min-width: 14rem">Tower Set No</th>
-                <th style="min-width: 16rem">Tower Set Delivery at Site Date</th>
+                <th style="min-width: 8rem">Sl. No.</th>
+                <th style="min-width: 10rem">Project Code</th>
+                <th style="min-width: 8rem">Site Name</th>
+                <th style="min-width: 10rem">Location Name</th>
+                <th style="min-width: 10rem">Day wise Generation</th>
+                <th style="min-width: 10rem">Monthly Generation</th>
+                <th style="min-width: 16rem">Cumulative Generation</th>
+                <th style="min-width: 14rem">Day wise PLF%</th>
+                <th style="min-width: 12rem">Monthly PLF%</th>
+                <th style="min-width: 16rem">Cumulative PLF%</th>
+                <th style="min-width: 14rem">Day Wise Machine Availability %</th>
+                <th style="min-width: 16rem">Monthly Machine Availability %</th>
+                <th style="min-width: 16rem">Cumulative Machine Availability %</th>
             </tr>
         </ng-template>
 
@@ -52,10 +50,8 @@
                         [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
                     </button>
                 </td>
-                <td>{{ project.SlNo }}</td>
-                <td style="min-width: 7rem">{{ project.Pcode }}</td>
                 <td></td>
-                <td></td>
+                <td style="min-width: 7rem"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -78,86 +74,82 @@
                 </td>
                 <td>
                     <div>
-                        <label for="anchor-cage-serial" class="block mb-2 font-semibold">S1 Tower Section Serial No</label>
+                        <label for="anchor-cage-serial" class="block mb-2 font-semibold">Project Code</label>
                         <input type="text" pInputText id="anchor-cage-serial" fluid />
                     </div>
                 </td>
                 <td>
-
                     <div>
-                        <label class="block mb-2 font-semibold">S1 Delivery at Site Date</label>
+                        <label for="location-no" class="block mb-2 font-semibold">Site Name</label>
+                        <input type="text" pInputText id="location-no" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="location-no" class="block mb-2 font-semibold">Location Name</label>
+                        <input type="text" pInputText id="location-no" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="top-flange" class="block mb-2 font-semibold">LTF Documents Received Yes/No</label>
+                        <input type="text" pInputText id="top-flange" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="bottom-flange" class="block mb-2 font-semibold">LTF Documents Received Status in
+                            %</label>
+                        <input type="text" pInputText id="bottom-flange" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Long Storage Maintenance Documents
+                            Received Yes/No</label>
+                        <input type="text" pInputText id="soil-test" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Long Storage Maintenance Documents
+                            Received Status</label>
+                        <input type="text" pInputText id="soil-test" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">HOTO Audit Yes/No</label>
+                        <input type="text" pInputText id="soil-test" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Punch Points Shared Yes/No</label>
+                        <input type="text" pInputText id="soil-test" fluid />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label for="soil-test" class="block mb-2 font-semibold">Punch Points Shared Date</label>
                         <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
                     </div>
                 </td>
                 <td>
                     <div>
-                        <label class="block mb-2 font-semibold">S2 Tower Section Serial No</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                        <label for="soil-test" class="block mb-2 font-semibold">Punch Points Closer Status in %</label>
+                        <input type="text" pInputText id="soil-test" fluid />
                     </div>
                 </td>
                 <td>
                     <div>
-                        <label class="block mb-2 font-semibold">S2 Delivery at Site Date</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                        <label for="soil-test" class="block mb-2 font-semibold">HOTO Certificate Signed Yes/No</label>
+                        <input type="text" pInputText id="soil-test" fluid />
                     </div>
                 </td>
                 <td>
                     <div>
-                        <label class="block mb-2 font-semibold">S3 Tower Section Serial No</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">S3 Delivery at Site Date</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">S4 Tower Section Serial No</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">S4 Delivery at Site Date</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">S5 Tower Section Serial No</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">S5 Delivery at Site Date</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">S6 Tower Section Serial No</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">S6 Delivery at Site Date</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">Tower Set No</label>
-                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">Tower Set Delivery at Site Date</label>
+                        <label for="soil-test" class="block mb-2 font-semibold">HOTO Certificate Signed Date</label>
                         <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
                     </div>
                 </td>
