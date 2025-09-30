@@ -833,6 +833,7 @@ export class AppMenu {
                                             {
                                                 label: 'O&M Generations',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/o&m/generations']
                                             
                                             },
                                             {
@@ -1012,10 +1013,12 @@ export class AppMenu {
                                             {
                                                 label: 'Installation',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/installation']
                                             },
                                             {
                                                 label: 'Commissioning',
                                                 icon: 'pi pi-fw pi-bookmark',
+                                                routerLink: ['/app/uikit/project/commissioning']
                                             },
                                             {
                                                 label: 'STPT',

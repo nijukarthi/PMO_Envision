@@ -54,6 +54,8 @@ import { ProjectIandcReceivingConverterpanelComponent } from '../unikit/project/
 import { ProjectIandcReceivingSiteaccessoriesComponent } from '../unikit/project/osw/iandc/wtgReceiving/project-iandc-receiving-siteaccessories/project-iandc-receiving-siteaccessories.component';
 import { ProjectFoundationComponent } from '../unikit/project/osw/iandc/project-foundation/project-foundation.component';
 import { ProjectIandcHotoComponent } from '../unikit/project/osw/iandc/project-iandc-hoto/project-iandc-hoto.component';
+import { ProjectInstallationComponent } from '../unikit/project/osw/iandc/project-installation/project-installation.component';
+import { ProjectOandmGenerationsComponent } from '../unikit/project/osw/oandm/project-oandm-generations/project-oandm-generations.component';
 
 export default [
     { path: 'button', data: { breadcrumb: 'Button' }, component: ButtonDemo },
@@ -93,6 +95,9 @@ export default [
     { path: 'project/receiving/site-accessories', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcReceivingSiteaccessoriesComponent },
     { path: 'project/foundation', data: { breadcrumb: 'Site Engineer' }, component: ProjectFoundationComponent },
     { path: 'project/hoto', data: { breadcrumb: 'Site Engineer' }, component: ProjectIandcHotoComponent },
+    { path: 'project/installation', data: { breadcrumb: 'Site Engineer' }, component: ProjectInstallationComponent },
+    { path: 'project/commissioning', data: { breadcrumb: 'Site Engineer' }, component: ProjectInstallationComponent },
+    { path: 'project/o&m/generations', data: { breadcrumb: 'Site Engineer' }, component: ProjectOandmGenerationsComponent },
     { path: 'projectManager', data: { breadcrumb: 'Site Engineer' }, component: ProjectManagerComponent },
     { path: 'clusterManager', data: { breadcrumb: 'Site Engineer' }, component: ClusterManagerComponent },
     { path: 'siteManager', data: { breadcrumb: 'Site Engineer' }, component: HodSiteManagerComponent },
