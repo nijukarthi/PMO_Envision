@@ -379,6 +379,18 @@ enableRow(index: number) {
 
   saveSPV(){
     try{
+      console.log(this.spvForm.value);
+      console.log(this.wtgs);
+      const formData = this.spvForm.getRawValue();
+
+  console.log("Full Form Data:", formData);
+
+  // if you want only wtgs array
+  console.log("WTGS Rows:", formData.wtgs);
+
+  // if you want overall total separately
+  console.log("Overall Total Capacity:", this.overallTotalCapacity);
+      
       this.spvForm.reset();
        /* if (this.wtgs.length > 0) {
     const prevRow = this.wtgs.at(this.wtgs.length - 1) as FormGroup;
