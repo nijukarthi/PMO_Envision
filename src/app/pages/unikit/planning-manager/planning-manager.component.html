@@ -411,7 +411,7 @@
                                     <th>Shipment_Address</th>
                                     <th>WTG Type</th>
                                     <th>Capacity/WTG(MW)</th>
-                                    <th>Tower Type</th>
+                                    <th *ngIf="towerScopeChecked">Tower Type</th>
                                     <th>Grid Connectivity</th>
                                     <th>PPA Type</th>
                                     <th>WTG QTY.</th>
@@ -441,7 +441,7 @@
                                             filterBy="label" placeholder="Select Capacity" [options]="capacityOptions"
                                             optionLabel="label" optionValue="value" styleClass="w-full" />
                                     </td>
-                                    <td style="min-width: 7rem">
+                                    <td style="min-width: 7rem" *ngIf="towerScopeChecked">
                                         <p-select appendTo="body" formControlName="tower" [filter]="true" filterBy="label"
                                             placeholder="Select Tower" [options]="towerOptions" optionLabel="label"
                                             optionValue="value" styleClass="w-full" />
@@ -476,11 +476,15 @@
                             </ng-template>
                             <ng-template pTemplate="footer">
                                 <tr>
-                                    <td colspan="10" style="text-align: end; font-weight: bold;">
+                                    <td colspan="9" style="text-align: end; font-weight: bold;">
                                         Overall Total Capacity: {{ overallTotalCapacity }}
                                     </td>
-                                    <td>
-                                         <button pButton label="Save" class="p-button-outlined" icon="pi pi-save"
+                                    <td colspan="2" *ngIf="towerScopeChecked">
+                                         <button pButton label="Save" class="p-button-outlined w-full" icon="pi pi-save"
+                            (click)="saveSPV()"></button>
+                                    </td>
+                                    <td *ngIf="!towerScopeChecked">
+                                         <button pButton label="Save" class="p-button-outlined w-full" icon="pi pi-save"
                             (click)="saveSPV()"></button>
                                     </td>
                                 </tr>
