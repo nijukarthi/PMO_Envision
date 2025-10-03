@@ -24,57 +24,36 @@
         <!-- Header -->
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 3rem"></th> <!-- Expand icon column -->
-                <th style="min-width: 8rem">Project Qty</th>
-                <th style="min-width: 10rem">Location Number</th>
-                <th style="min-width: 8rem">Maximo Id</th>
-                <th style="min-width: 10rem">Nacelle Serial No</th>
-                <th style="min-width: 10rem">Hub Serial No</th>
-                <th style="min-width: 10rem">Blade Serial No</th>
-                <th style="min-width: 16rem">Converter Panel Serial No</th>
-                <th style="min-width: 14rem">Main Crane Supplier</th>
-                <th style="min-width: 12rem">Main Crane Model</th>
-                <th style="min-width: 16rem">Start of main crane assembly</th>
-                <th style="min-width: 14rem">Main Crane boom up</th>
-                <th style="min-width: 16rem">Bottom Platform Assembly</th>
-                <th style="min-width: 16rem">Converter Panel Installation</th>
-                <th style="min-width: 16rem">S1 Tower Section Installation</th>
-                <th style="min-width: 16rem">S2 Tower Section Installation</th>
-                <th style="min-width: 16rem">S3 Tower Section Installation</th>
-                <th style="min-width: 16rem">S4 Tower Section Installation</th>
-                <th style="min-width: 16rem">S5 Tower Section Installation</th>
-                <th style="min-width: 14rem">Nacelle Installation</th>
-                <th style="min-width: 16rem">Rotor Method/Hub assembly</th>
-                <th style="min-width: 16rem">Single Blade Method/Single Blade1 Installation</th>
-                <th style="min-width: 16rem">Single Blade Method/Single Blade2 Installation</th>
-                <th style="min-width: 16rem">Single Blade Method/Single Blade3 Installation</th>
-                <th style="min-width: 16rem">Rotor Installation Method/Rotor Installation</th>
-                <th style="min-width: 14rem">Main crane boom down</th>
-                <th style="min-width: 16rem">Anchor bolts 10% torque check</th>
-                <th style="min-width: 16rem">T1 Upper bolts 10% torque check</th>
-                <th style="min-width: 16rem">T2 Upper bolts 10% torque check</th>
-                <th style="min-width: 16rem">T3 Upper bolts 10% torque check</th>
-                <th style="min-width: 16rem">T4 Upper bolts 10% torque check</th>
-                <th style="min-width: 16rem">Tower-Nacelle bolts 10% torque check</th>
-                <th style="min-width: 16rem">Nacelle-Hub bolts 10% torque check</th>
-                <th style="min-width: 16rem">Blade 1 bolts 10% torque check</th>
-                <th style="min-width: 16rem">Blade 2 bolts 10% torque check</th>
-                <th style="min-width: 16rem">Blade 3 bolts 10% torque check</th>
-                <th style="min-width: 16rem">10% Final torquing Completed</th>
-                <th style="min-width: 12rem">Cable Laying Date</th>
-                <th style="min-width: 16rem">Generator Alignment Date</th>
-                <th style="min-width: 14rem">QA Inspection Date</th>
-                <th style="min-width: 16rem">Final QA Inspection Date</th>
-                <th style="min-width: 14rem">Lift Installation Date</th>
-                <th style="min-width: 14rem">MCC sign off Date</th>
-                <th style="min-width: 12rem">Pre-Com Date</th>
-                <th style="min-width: 16rem">Pre-Com Sign off Date</th>
-                <th style="min-width: 12rem">Grid-Com Date</th>
-                <th style="min-width: 16rem">Grid-Com Sign-off Date</th>
-                <th style="min-width: 10rem">STPT Date</th>
-                <th style="min-width: 14rem">STPT sign off Date</th>
-                <th style="min-width: 10rem">HOTO Date</th>
-                <th style="min-width: 14rem">HOTO sign off Date</th>
+                <th style="width: 3rem" rowspan="2"></th> <!-- Expand icon column -->
+                <th style="min-width: 5rem" rowspan="2">Sl. No.</th>
+                <th style="min-width: 10rem" rowspan="2">Customer</th>
+                <th style="min-width: 8rem" rowspan="2">P-Code</th>
+                <th style="min-width: 10rem" rowspan="2">Projects</th>
+                <th style="min-width: 10rem" rowspan="2">State</th>
+                <th style="min-width: 10rem" rowspan="2">SPV</th>
+                <th style="min-width: 16rem" rowspan="2">Project Qty</th>
+                <th style="min-width: 14rem" rowspan="2">Location Number</th>
+                <th style="min-width: 14rem; text-align: center;" colspan="4">Pre-Commissioning</th>
+                <th style="min-width: 14rem; text-align: center;" colspan="9">Commissioning</th>
+                <th style="min-width: 14rem; text-align: center;" colspan="3">STPT</th>
+            </tr>
+            <tr>
+                <th>Bottom Commissioning</th>
+                <th>Nacelle Commissioning</th>
+                <th>Hub Commissioning</th>
+                <th style="min-width: 8rem;">Sign Off</th>
+                <th>Commissioning Plan</th>
+                <th style="min-width: 8rem;">USS Charge</th>
+                <th style="min-width: 8rem;">WTG Charge</th>
+                <th style="min-width: 8rem;">Converter Test</th>
+                <th style="min-width: 8rem;">Generation Trial</th>
+                <th>Real Time Validation</th>
+                <th>MPCC/PPC</th>
+                <th style="min-width: 8rem;">COD</th>
+                <th>Certificate Sign Off</th>
+                <th style="min-width: 10rem">STPT Start Date</th>
+                <th style="min-width: 10rem">STPT End Date</th>
+                <th style="min-width: 10rem">STPT Sign Off</th>
             </tr>
         </ng-template>
 
@@ -89,32 +68,6 @@
                 </td>
                 <td></td>
                 <td style="min-width: 7rem"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
