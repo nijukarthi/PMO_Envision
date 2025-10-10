@@ -2,14 +2,18 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { Shared } from '../../../../../../../services/shared/shared.module';
+import { WtgDetailsComponent } from "../../../wtg-details/wtg-details.component";
 
 @Component({
   selector: 'app-project-tsa-production-hub',
-  imports: [Shared],
+  imports: [Shared, WtgDetailsComponent],
   templateUrl: './project-tsa-production-hub.component.html',
   styleUrl: './project-tsa-production-hub.component.scss'
 })
 export class ProjectTsaProductionHubComponent {
+  rowExpand = false;
+  openWtgDetails = false;
+
   expandedRowsKeys: { [key: string]: boolean } = {};
         expandedRows: { [key: string]: boolean } = {};
       clusterManager = [
@@ -95,4 +99,12 @@ export class ProjectTsaProductionHubComponent {
           onRowCollapse(event: TableRowCollapseEvent) {
              // this.messageService.add({ severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000 });
           }
+
+    viewWtgDetails(){
+      try {
+        this.openWtgDetails = true;
+      } catch (error) {
+        console.log(error);
+      }
+    }
 }

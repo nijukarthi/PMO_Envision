@@ -12,7 +12,10 @@ import { WtgDetailsComponent } from "../../../wtg-details/wtg-details.component"
 })
 export class ProjectAnchorcageComponent {
   @ViewChild('dt2') dt2!: Table;
+
   openWtgDetails = false;
+  rowExpand = false;
+
     expandedRowsKeys: { [key: string]: boolean } = {};
     expandedRows: { [key: string]: boolean } = {};
   clusterManager = [
