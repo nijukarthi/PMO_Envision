@@ -257,16 +257,19 @@
         <!-- Header -->
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 3rem"></th> <!-- Expand icon column -->
+                <th style="width: 3rem"></th> <!-- Expand icon column --> 
                 <th>Sl. No.</th>
                 <th style="width: 7rem">P-code</th>
                 <th>Full Project Description</th>
                 <th style="min-width: 10rem">State</th>
                 <th style="min-width: 10rem">Activity</th>
                 <th style="min-width: 10rem">Project QTY</th>
-                <th style="min-width: 10rem">Production_Plan</th>
-                <th style="min-width: 10rem">Production_Actual </th>
+                <th style="min-width: 10rem">Production Plan</th>
+                <th style="min-width: 10rem">Production Actual </th>
                 <th style="min-width: 10rem">Production LE</th>
+                <th style="min-width: 10rem">In Process Inspection Plan</th>
+                <th style="min-width: 10rem">In Process Inspection Actual</th>
+                <th style="min-width: 10rem">In Process Inspection LE</th>
                 <th style="min-width: 10rem">COC Plan</th>
                 <th style="min-width: 10rem">COC Actual </th>
                 <th style="min-width: 10rem">COC LE</th>
@@ -282,6 +285,10 @@
                 <th style="min-width: 10rem">Delivery Plan</th>
                 <th style="min-width: 10rem">Delivery Actual</th>
                 <th style="min-width: 10rem">Delivery LE</th>
+                @if (rowExpand) {
+                    <th></th>
+                    <th></th>
+                }
             </tr>
         </ng-template>
 
@@ -289,13 +296,15 @@
         <ng-template pTemplate="body" let-project let-expanded="expanded">
             <tr>
                 <td>
-                    <button type="button" pButton pRipple [pRowToggler]="project"
+                    <button type="button" pButton pRipple [pRowToggler]="project" (click)="rowExpand = !rowExpand"
                         class="p-button-text p-button-rounded p-button-plain"
                         [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
                     </button>
                 </td>
                 <td>{{ project.SlNo }}</td>
-                <td style="min-width: 7rem">{{ project.Pcode }}</td>
+                <td style="min-width: 7rem">
+                    <p-button (click)="viewWtgDetails()" [label]="project.Pcode" variant="text" severity="contrast" link />
+                </td>
                 <td>{{ project.FPD }}</td>
                 <td>{{ project.State }}</td>
                 <td>{{ project.SiteName }}</td>
@@ -307,27 +316,13 @@
         <!-- Expanded Row -->
         <ng-template pTemplate="rowexpansion" #expandedrow let-project>
             <tr *ngFor="let exp of valuesofEXP">
-                <td colspan="5" style="text-align: center;">
+                <td colspan="3" style="text-align: center;">{{ project.Pcode }}</td>
+                <td>{{ project.FPD }}</td>
+                <td>{{ project.State }}</td>
+                <td>{{ project.SiteName }}</td>
+                <td style="text-align: center;">
                     {{exp.name}}
                 </td>
-                <td style="min-width: 13rem">
-                    <div>
-                        <button pButton label="Upload COC" class=" mb-2 m-2" icon="pi pi-upload"></button>
-
-                    </div>
-                </td>
-                <td style="min-width: 14rem">
-                    <div>
-                        <button pButton label="Download COC" class=" mb-2 m-2" icon="pi pi-download"></button>
-
-                    </div>
-                </td>
-                <!-- <td>
-                    <div>
-                        <label class="block mb-2 font-semibold">Project_QTY</label>
-                        <input type="text" pInputText placeholder="Enter QTY" class="w-full" />
-                    </div>
-                </td> -->
                 <td>
                     <div>
                         <label class="block mb-2 font-semibold">Production_Plan</label>
@@ -343,6 +338,24 @@
                 <td>
                     <div>
                         <label class="block mb-2 font-semibold">Production LE</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">In Process Inspection Plan</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">In Process Inspection Actual</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">In Process Inspection LE</label>
                         <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
                     </div>
                 </td>
@@ -398,22 +411,60 @@
                     </div>
                 </td>
                 <td>
-
                     <div>
                         <label class="block mb-2 font-semibold">MDCC LE</label>
                         <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
                     </div>
                 </td>
-                <!-- <td colspan="6">
-                                <div class="p-4">
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        
-                                        
-                                       
-                                        
-                                    </div>
-                                </div>
-                            </td> -->
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Dispatch Plan</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Dispatch Actual</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Dispatch LE</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Delivery Plan</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Delivery Actual</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <label class="block mb-2 font-semibold">Delivery LE</label>
+                        <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                    </div>
+                </td>
+                @if (rowExpand) {
+                    <td style="min-width: 13rem">
+                        <div>
+                            <button pButton label="Upload COC" class=" mb-2 m-2" icon="pi pi-upload"></button>
+                    
+                        </div>
+                    </td>
+                    <td style="min-width: 14rem">
+                        <div>
+                            <button pButton label="Download COC" class=" mb-2 m-2" icon="pi pi-download"></button>  
+                        </div>
+                    </td>
+                }
             </tr>
         </ng-template>
 
@@ -427,3 +478,9 @@
 
 
 </div>
+
+<ng-container>
+    @if (openWtgDetails) {
+        <app-wtg-details [(openWtgDetails)]="openWtgDetails"></app-wtg-details>
+    }
+</ng-container>

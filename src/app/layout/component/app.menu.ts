@@ -877,7 +877,7 @@ export class AppMenu {
                                                         routerLink: ['/app/uikit/project/nacelle'],
                                                     },
                                                     {
-                                                        label: 'HUB',
+                                                        label: 'Hub',
                                                         icon: 'pi pi-fw pi-bookmark',
                                                         routerLink: ['/app/uikit/project/hub'],
                                                     },
@@ -923,7 +923,7 @@ export class AppMenu {
                                                         routerLink: ['/app/uikit/project/dispatch/nacelle']
                                                     },
                                                     {
-                                                        label: 'HUB',
+                                                        label: 'Hub',
                                                         icon: 'pi pi-fw pi-bookmark',
                                                         routerLink: ['/app/uikit/project/dispatch/hub']
                                                     },
@@ -975,7 +975,7 @@ export class AppMenu {
                                                         routerLink: ['/app/uikit/project/receiving/nacelle']
                                                     },
                                                     {
-                                                        label: 'HUB',
+                                                        label: 'Hub',
                                                         icon: 'pi pi-fw pi-bookmark',
                                                         routerLink: ['/app/uikit/project/receiving/hub']
                                                     },

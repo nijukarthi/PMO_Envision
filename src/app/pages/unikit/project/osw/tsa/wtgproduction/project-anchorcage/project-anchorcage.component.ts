@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
+import { Table, TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { Shared } from '../../../../../../../services/shared/shared.module';
+import { WtgDetailsComponent } from "../../../wtg-details/wtg-details.component";
 
 @Component({
   selector: 'app-project-anchorcage',
-  imports: [Shared],
+  imports: [Shared, WtgDetailsComponent],
   templateUrl: './project-anchorcage.component.html',
   styleUrl: './project-anchorcage.component.scss'
 })
 export class ProjectAnchorcageComponent {
+  @ViewChild('dt2') dt2!: Table;
+
+  openWtgDetails = false;
+  rowExpand = false;
+
     expandedRowsKeys: { [key: string]: boolean } = {};
     expandedRows: { [key: string]: boolean } = {};
   clusterManager = [
@@ -95,4 +101,44 @@ export class ProjectAnchorcageComponent {
       onRowCollapse(event: TableRowCollapseEvent) {
          // this.messageService.add({ severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000 });
       }
+
+    wtgDetails = [
+      {
+        WTG: 'WTG1',
+        pp: '03/10/2025',
+        pa: '03/10/2025',
+        pl: '03/10/2025',
+        cp: '03/10/2025',
+        ca: '03/10/2025',
+        cl: '03/10/2025',
+        ip: '03/10/2025',
+        ia: '03/10/2025',
+        il: '03/10/2025',
+        mp: '03/10/2025',
+        ma: '03/10/2025',
+        ml: '03/10/2025',
+        disp: '03/10/2025',
+        disa: '03/10/2025',
+        disl: '03/10/2025',
+        dp: '03/10/2025',
+        da: '03/10/2025',
+        dl: '03/10/2025',
+      },
+      {
+        WTG: 'WTG2'
+      }
+    ]
+  viewWtgDetails(){
+    try {
+      this.openWtgDetails = true;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onGlobalFilter(event: Event){
+    const value = (event.target as HTMLInputElement).value;
+    this.dt2.filterGlobal(value, 'contains');
+  }
+
 }

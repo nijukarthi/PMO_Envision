@@ -1,0 +1,114 @@
+<p-dialog header="WTG Details" [(visible)]="openWtgDetails" (onHide)="openWtgDetails.set(false)" [modal]="true" [style]="{width: '80rem'}"
+    [maximizable]="true" [draggable]="false">
+    <p-table #dt1 [value]="wtgDetails" showGridlines [globalFilterFields]="['WTG']" [tableStyle]="{'min-width': '60rem'}">
+        <ng-template #caption>
+            <div class="flex">
+                <p-iconfield iconPosition="left">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Search keyword" />
+                </p-iconfield>
+                <p-button type="button" label="Save" icon="pi pi-save" variant="outlined" class="ml-auto" />
+            </div>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th style="width: 4rem;"><p-tableHeaderCheckbox /></th>
+                <th>WTG</th>
+                <th style="min-width: 12rem">Production Plan</th>
+                <th style="min-width: 12rem">Production Actual</th>
+                <th style="min-width: 12rem">Production LE</th>
+                <th style="min-width: 14rem">In Process Inspection Plan</th>
+                <th style="min-width: 16rem">In Process Inspection Actual</th>
+                <th style="min-width: 14rem">In Process Inspection LE</th>
+                <th style="min-width: 12rem">COC Plan</th>
+                <th style="min-width: 12rem">COC Actual</th>
+                <th style="min-width: 12rem">COC LE</th>
+                <th style="min-width: 12rem">Inspection Plan</th>
+                <th style="min-width: 12rem">Inspection Actual</th>
+                <th style="min-width: 12rem">Inspection LE</th>
+                <th style="min-width: 12rem">MDCC Plan</th>
+                <th style="min-width: 12rem">MDCC Actual</th>
+                <th style="min-width: 12rem">MDCC LE</th>
+                <th style="min-width: 12rem">Dispatch Plan</th>
+                <th style="min-width: 12rem">Dispatch Actual</th>
+                <th style="min-width: 12rem">Dispatch LE</th>
+                <th style="min-width: 12rem">Delivery Plan</th>
+                <th style="min-width: 12rem">Delivery Actual</th>
+                <th style="min-width: 12rem">Delivery LE</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-wtg>
+            <tr>
+                <td>
+                    <p-tableCheckbox />
+                </td>
+                <td>{{wtg.WTG}}</td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td styleClass="min-width:10rem">
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date"></p-datepicker>
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date" />
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date" />
+                </td>
+                <td>
+                    <p-datepicker appendTo="body" styleClass="w-full" placeholder="Select Date" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>
