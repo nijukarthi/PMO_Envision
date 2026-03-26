@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yearly Demand Plan – Envision</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #eef1f5;
+  --sidebar:     #ffffff;
+  --card:        #ffffff;
+  --surface:     #f5f7fa;
+  --border:      #e2e6ed;
+  --border2:     #d1d9e2;
+  --accent:      #00a86b;
+  --accent2:     #00875a;
+  --accent-lt:   #e6f7f1;
+  --accent-bd:   #b3e6d3;
+  --blue:        #1a6fc4;
+  --blue-lt:     #e8f1fb;
+  --red:         #dc2626;
+  --red-lt:      #fef2f2;
+  --amber:       #d97706;
+  --text:        #1a2332;
+  --text2:       #4a5568;
+  --text3:       #8fa0b4;
+  --text4:       #c8d5e3;
+  --header-h:    56px;
+  --sidebar-w:   240px;
+  --r:           8px;
+  --r-sm:        6px;
+  --shadow:      0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg:   0 16px 48px rgba(0,0,0,0.14),0 4px 16px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.5}
+
+/* ── Top Nav ── */
+.top-nav{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.nav-menu-btn{width:32px;height:32px;border-radius:var(--r-sm);border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:background .15s}
+.nav-menu-btn:hover{background:var(--surface)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-brand{font-size:16px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.nav-spacer{flex:1}
+.nav-icon{width:36px;height:36px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:background .15s}
+.nav-icon:hover{background:var(--surface)}
+.nav-avatar{width:32px;height:32px;border-radius:50%;background:var(--surface);border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text3);cursor:pointer}
+
+/* ── Layout ── */
+.layout{display:flex;margin-top:var(--header-h);min-height:calc(100vh - var(--header-h))}
+
+/* ── Sidebar ── */
+.sidebar{width:var(--sidebar-w);background:var(--sidebar);border-right:1px solid var(--border);padding:16px 12px;flex-shrink:0;position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));overflow-y:auto}
+.sb-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;padding:0 8px;margin-bottom:6px}
+.sb-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .15s;text-decoration:none;margin-bottom:2px}
+.sb-item:hover{background:var(--surface);color:var(--text)}
+.sb-item.active{background:var(--accent-lt);color:var(--accent);font-weight:600}
+.sb-exit{position:absolute;bottom:16px;left:12px;right:12px}
+
+/* ── Main ── */
+.main{flex:1;padding:24px;overflow-x:hidden;min-width:0}
+
+/* ── Page header ── */
+.page-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.page-title{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.page-sub{font-size:12px;color:var(--text3);margin-top:2px}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r-sm);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;white-space:nowrap}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-green{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(0,168,107,.25)}
+.btn-green:not(:disabled):hover{background:var(--accent2);box-shadow:0 4px 14px rgba(0,168,107,.35);transform:translateY(-1px)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(26,111,196,.25)}
+.btn-blue:not(:disabled):hover{background:#155fa0;transform:translateY(-1px)}
+.btn-outline{background:#fff;color:var(--text2);border:1px solid var(--border2);box-shadow:var(--shadow)}
+.btn-outline:not(:disabled):hover{border-color:var(--accent);color:var(--accent)}
+.btn-ghost{background:transparent;color:var(--text3);border:1px solid transparent;padding:5px 9px;font-size:12px}
+.btn-ghost:hover{border-color:var(--red);color:var(--red);background:var(--red-lt)}
+.btn-sm{padding:7px 13px;font-size:12px}
+.btn-xs{padding:4px 8px;font-size:11px}
+
+/* ── Badge ── */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600}
+.badge-green{background:var(--accent-lt);color:var(--accent2);border:1px solid var(--accent-bd)}
+.badge-gray{background:var(--surface);color:var(--text3);border:1px solid var(--border)}
+
+/* ── Filter Bar ── */
+.filter-bar{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin-bottom:20px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow)}
+.fg{display:flex;flex-direction:column;gap:5px;min-width:158px}
+.fg label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.7px}
+.fg select{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-sm);color:var(--text);padding:8px 28px 8px 11px;font-family:'Inter',sans-serif;font-size:13px;outline:none;cursor:pointer;width:100%;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%238fa0b4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border-color .15s,box-shadow .15s}
+.fg select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,168,107,.1)}
+
+/* ── Project cards ── */
+.projects-wrap{display:flex;flex-direction:column;gap:16px}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;animation:cardIn .25s ease}
+@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.card-head{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.card-head-left{display:flex;align-items:center;gap:10px}
+.idx-badge{width:28px;height:28px;border-radius:6px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.card-head-title{font-size:13px;font-weight:600;color:var(--text)}
+.card-head-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+.sel-grp{display:flex;flex-direction:column;gap:4px;min-width:145px}
+.sel-grp label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.7px}
+.sel-grp select{background:#fff;border:1.5px solid var(--border2);border-radius:var(--r-sm);color:var(--text);padding:7px 26px 7px 10px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;outline:none;cursor:pointer;width:100%;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' stroke='%238fa0b4' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;transition:border-color .15s,box-shadow .15s}
+.sel-grp select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,168,107,.1)}
+
+/* ── Table ── */
+.table-wrap{overflow-x:auto}
+.demand-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.demand-tbl thead th{background:#f0f4f9;color:var(--text3);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:9px 10px;text-align:center;border-bottom:1.5px solid var(--border2);border-right:1px solid var(--border);white-space:nowrap}
+.demand-tbl thead th.left{text-align:left}
+.demand-tbl thead th.mh{min-width:62px;color:var(--blue)}
+.demand-tbl thead th.rth{color:var(--accent2);background:#edf7f3}
+.demand-tbl tbody tr{transition:background .1s}
+.demand-tbl tbody tr:hover{background:#fafbfc}
+.demand-tbl tbody td{padding:7px 10px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);color:var(--text2);vertical-align:middle}
+.demand-tbl tbody td.info{color:var(--text);font-weight:500;white-space:nowrap}
+
+.n-inp{width:54px;background:var(--surface);border:1.5px solid var(--border2);border-radius:4px;color:var(--text);text-align:center;padding:4px 3px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;outline:none;transition:all .15s;-moz-appearance:textfield}
+.n-inp::-webkit-inner-spin-button,.n-inp::-webkit-outer-spin-button{-webkit-appearance:none}
+.n-inp:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(0,168,107,.1)}
+.n-inp:hover:not(:focus){border-color:var(--text4)}
+
+.total-row td{background:#f0f9f5 !important;font-weight:700;color:var(--text) !important;border-top:2px solid var(--accent-bd) !important}
+.total-row .tv{color:var(--accent2);font-weight:700}
+.rt-cell{background:#edf7f3;color:var(--accent2) !important;font-weight:700;text-align:center}
+
+/* ── Card footer ── */
+.card-foot{padding:10px 14px;border-top:1px solid var(--border);background:var(--surface);display:flex;align-items:center;gap:8px}
+.foot-hint{font-size:11px;color:var(--text3);margin-left:auto;font-style:italic}
+
+/* ── Empty state ── */
+.empty-st{text-align:center;padding:52px 24px;color:var(--text3)}
+.empty-icon{width:52px;height:52px;background:var(--surface);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--text4)}
+.empty-st h3{font-size:15px;color:var(--text2);margin-bottom:6px;font-weight:600}
+.empty-st p{font-size:13px}
+
+/* ── Modal ── */
+.overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);backdrop-filter:blur(3px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;animation:ovIn .2s ease}
+@keyframes ovIn{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:12px;width:100%;max-width:1120px;max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);animation:modalUp .25s ease;overflow:hidden}
+@keyframes modalUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.modal-hd{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface);flex-shrink:0}
+.modal-title{font-size:16px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
+.modal-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.modal-close{width:32px;height:32px;border-radius:var(--r-sm);background:var(--surface);border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:16px;transition:all .15s}
+.modal-close:hover{background:var(--red-lt);border-color:var(--red);color:var(--red)}
+.modal-body{padding:20px 24px;overflow-y:auto;flex:1}
+.modal-ft{padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface);flex-shrink:0}
+
+/* ── Summary tiles ── */
+.sum-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px;margin-bottom:20px}
+.s-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;text-align:center}
+.s-tile-lbl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+.s-tile-val{font-size:26px;font-weight:700;color:var(--accent)}
+
+/* ── Summary table ── */
+.sum-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.sum-tbl th{background:#f0f4f9;color:var(--text3);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:9px 11px;text-align:center;border:1px solid var(--border);white-space:nowrap}
+.sum-tbl th.left{text-align:left}
+.sum-tbl td{padding:8px 11px;border:1px solid var(--border);color:var(--text2);text-align:center;white-space:nowrap}
+.sum-tbl td.left{text-align:left}
+.sum-tbl tbody tr:hover{background:#fafbfc}
+.sum-total td{background:#f0f9f5;font-weight:700;color:var(--text);border-top:2px solid var(--accent-bd)}
+.sum-total .tv{color:var(--accent2)}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--accent);color:#fff;padding:12px 20px;border-radius:var(--r);font-size:13px;font-weight:600;z-index:9999;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,168,107,.35);animation:tIn .3s ease,tOut .3s ease 2.7s forwards}
+@keyframes tIn{from{transform:translateY(16px);opacity:0}}
+@keyframes tOut{to{transform:translateY(10px);opacity:0}}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* SPV disabled option style */
+option:disabled{color:#aaa !important}
+</style>
+</head>
+<body>
+
+<!-- ── Top Nav ── -->
+<nav class="top-nav">
+  <!-- <button class="nav-menu-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button> -->
+  <a class="nav-logo" href="#">
+   <!--  <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="18" fill="#e6f7f1"/>
+      <ellipse cx="20" cy="20" rx="10" ry="17" fill="none" stroke="#00a86b" stroke-width="1.6"/>
+      <ellipse cx="20" cy="20" rx="17" ry="10" fill="none" stroke="#1a6fc4" stroke-width="1.2" stroke-dasharray="3,2.5"/>
+      <circle cx="20" cy="20" r="18" fill="none" stroke="#00a86b" stroke-width="1.6"/>
+      <line x1="3" y1="20" x2="37" y2="20" stroke="#00a86b" stroke-width="1.2"/>
+      <circle cx="20" cy="20" r="2.5" fill="#00a86b"/>
+    </svg> -->
+    <span class="nav-brand">ENVISION</span>
+  </a>
+  <div class="nav-spacer"></div>
+  <button class="nav-icon" title="Settings">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+    </svg>
+  </button>
+  <button class="nav-icon" title="Notifications">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+    </svg>
+  </button>
+  <div class="nav-avatar">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+    </svg>
+  </div>
+</nav>
+
+<!-- ── Layout ── -->
+<div class="layout">
+  <!-- Sidebar -->
+ <!--  <aside class="sidebar">
+    <div style="margin-bottom:20px">
+      <div class="sb-label">PMO</div>
+      <a class="sb-item active" href="#">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Demand Plan
+      </a>
+    </div>
+    <div class="sb-exit">
+      <div class="sb-label">EXIT PORTAL</div>
+      <a class="sb-item" href="#">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        LogOut
+      </a>
+    </div>
+  </aside> -->
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Page Header -->
+    <div class="page-hd">
+      <div>
+        <div class="page-title">YEarly Demand Plan</div>
+        <div class="page-sub">Manage wind turbine demand entries by project and SPV</div>
+      </div>
+      <span id="statusBadge" class="badge badge-gray">No data entered</span>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="fg">
+        <label>Plan Year</label>
+        <select id="yearSel" onchange="onYearChange()">
+          <option value="">-- Select Year --</option>
+          <option value="2025">2025</option>
+          <option value="2026" selected>2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Customer</label>
+        <select id="custSel" onchange="onCustomerChange()">
+          <option value="">-- Select Customer --</option>
+          <option value="ReNew">ReNew Power</option>
+          <option value="Adani">Adani Green Energy</option>
+          <option value="Greenko">Greenko Group</option>
+          <option value="NTPC">NTPC Renewable</option>
+          <option value="JSW">JSW Energy</option>
+        </select>
+      </div>
+      <div style="flex:1"></div>
+      <button class="btn btn-outline btn-sm" id="addProjBtn" onclick="addProject()" disabled>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        Add More Project
+      </button>
+      <button class="btn btn-blue btn-sm" id="summaryBtn" onclick="openSummary()" disabled>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/>
+          <line x1="9" y1="3" x2="9" y2="21"/>
+        </svg>
+        View Summary
+      </button>
+    </div>
+
+    <!-- Projects Container -->
+    <div class="projects-wrap" id="projectsWrap">
+      <div class="project-card">
+        <div class="empty-st">
+          <div class="empty-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <h3>Select Year &amp; Customer to begin</h3>
+          <p>Use the filters above to start entering demand data.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ── Summary Modal ── -->
+<div class="overlay" id="summaryOv" style="display:none" onclick="if(event.target===this)closeSummary()">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-title">
+        <span class="modal-dot"></span>
+        Plan Summary
+        <span id="summaryMeta" style="font-size:13px;color:var(--text3);font-weight:400"></span>
+      </div>
+      <button class="modal-close" onclick="closeSummary()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="sum-tiles" id="sumTiles"></div>
+      <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">Detailed Breakdown</div>
+      <div style="overflow-x:auto">
+        <table class="sum-tbl">
+          <thead id="sumHead"></thead>
+          <tbody id="sumBody"></tbody>
+          <tfoot id="sumFoot"></tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="modal-ft">
+      <span style="font-size:12px;color:var(--text3)">Review all entries before submitting.</span>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-outline" onclick="closeSummary()">Close</button>
+        <button class="btn btn-green" onclick="submitPlan()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Submit Plan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════
+//  DATA
+// ════════════════════════════════
+const DB = {
+  customers: {
+    ReNew:   ['P-1719','P-1854','P-2001'],
+    Adani:   ['P-2101','P-2202','P-2305'],
+    Greenko: ['P-3001','P-3102'],
+    NTPC:    ['P-4001','P-4220'],
+    JSW:     ['P-5001','P-5110','P-5230']
+  },
+  spvs: {
+    'P-1719': ['SPV 1','SPV 2','SPV 3'],
+    'P-1854': ['SPV 10','SPV 11'],
+    'P-2001': ['SPV 5'],
+    'P-2101': ['SPV A','SPV B'],
+    'P-2202': ['SPV C','SPV D','SPV E'],
+    'P-2305': ['SPV F'],
+    'P-3001': ['SPV G','SPV H'],
+    'P-3102': ['SPV I'],
+    'P-4001': ['SPV J','SPV K'],
+    'P-4220': ['SPV L'],
+    'P-5001': ['SPV M','SPV N'],
+    'P-5110': ['SPV O'],
+    'P-5230': ['SPV P','SPV Q']
+  },
+  defaults: {
+    'SPV 1' : [{w:'EN182',c:5,  t:'140HH-474T',b:'Big',  q:10},
+               {w:'EN156',c:3.3,t:'120HH-304T',b:'Small',q:10}],
+    'SPV 2' : [{w:'EN182',c:5,  t:'140HH-474T',b:'Big',  q:8},
+               {w:'EN156',c:3.3,t:'120HH-304T',b:'Small',q:5}],
+    'SPV 3' : [{w:'EN132',c:2.4,t:'120HH-304T',b:'Small',q:12}],
+    'SPV 10': [{w:'EN132',c:2.4,t:'120HH-304T',b:'Small',q:15},
+               {w:'EN182',c:5,  t:'140HH-474T',b:'Big',  q:9},
+               {w:'EN156',c:3.3,t:'120HH-304T',b:'Small',q:6}],
+    'SPV 11': [{w:'EN182',c:5,  t:'140HH-474T',b:'Big',  q:7}]
+  }
+};
+
+// ════════════════════════════════
+//  STATE
+// ════════════════════════════════
+const state = { year:'2026', customer:'', projects:[] };
+let uidSeed = 0;
+
+function ml() {
+  const y = state.year || '2026';
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m=>m+' '+y);
+}
+
+// ── FIX 1: sequential display index ──
+// Always computed from current array position — never stale
+function dIdx(uid) { return state.projects.findIndex(p=>p.uid===uid)+1; }
+
+// ── FIX 2: SPVs used by OTHER cards with the SAME project code ──
+function usedSpvs(projCode, myUid) {
+  return state.projects
+    .filter(p=>p.uid!==myUid && p.projectCode===projCode && p.spv)
+    .map(p=>p.spv);
+}
+
+// ════════════════════════════════
+//  EVENT HANDLERS
+// ════════════════════════════════
+function onYearChange() {
+  state.year = document.getElementById('yearSel').value;
+  render();
+}
+
+function onCustomerChange() {
+  state.customer = document.getElementById('custSel').value;
+  state.projects = [];
+  uidSeed = 0;
+  const ok = state.customer && state.year;
+  document.getElementById('addProjBtn').disabled = !ok;
+  document.getElementById('summaryBtn').disabled = !ok;
+  if (ok) addProject(); else render();
+}
+
+function addProject() {
+  if (!state.year||!state.customer) return;
+  state.projects.push({uid:++uidSeed, projectCode:'', spv:'', rows:[]});
+  render();
+}
+
+function removeProject(uid) {
+  state.projects = state.projects.filter(p=>p.uid!==uid);
+  // ── FIX 1: After removal, dIdx() recalculates automatically via array position ──
+  render();
+}
+
+function onProjChange(uid, code) {
+  const p = state.projects.find(p=>p.uid===uid);
+  if (!p) return;
+  p.projectCode = code; p.spv = ''; p.rows = [];
+  render();
+}
+
+function onSpvChange(uid, spv) {
+  const p = state.projects.find(p=>p.uid===uid);
+  if (!p) return;
+  p.spv = spv;
+  const defs = DB.defaults[spv];
+  p.rows = defs
+    ? defs.map(d=>({wtg:d.w,cap:d.c,tower:d.t,blade:d.b,qty:d.q,mon:Array(12).fill(0)}))
+    : [{wtg:'EN182',cap:5,tower:'140HH-474T',blade:'Big',qty:0,mon:Array(12).fill(0)}];
+  render();
+}
+
+function addRow(uid) {
+  const p = state.projects.find(p=>p.uid===uid);
+  if (p) { p.rows.push({wtg:'EN182',cap:5,tower:'140HH-474T',blade:'Big',qty:0,mon:Array(12).fill(0)}); render(); }
+}
+
+function removeRow(uid,ri) {
+  const p = state.projects.find(p=>p.uid===uid);
+  if (p) { p.rows.splice(ri,1); render(); }
+}
+
+function updField(uid,ri,f,v) {
+  const p = state.projects.find(p=>p.uid===uid);
+  if (p) p.rows[ri][f] = v;
+}
+
+function updMon(uid,ri,mi,v) {
+  const p = state.projects.find(p=>p.uid===uid);
+  if (!p) return;
+  p.rows[ri].mon[mi] = v;
+  fastTotals(uid);
+  updBadge();
+}
+
+// ════════════════════════════════
+//  RENDER
+// ════════════════════════════════
+function render() {
+  const wrap = document.getElementById('projectsWrap');
+  if (!state.customer || !state.year || !state.projects.length) {
+    wrap.innerHTML = `<div class="project-card"><div class="empty-st">
+      <div class="empty-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+      </svg></div>
+      <h3>Select Year &amp; Customer to begin</h3>
+      <p>Use the filters above to start entering demand data.</p>
+    </div></div>`;
+    return;
+  }
+  wrap.innerHTML = state.projects.map(p=>buildCard(p)).join('');
+  updBadge();
+}
+
+function buildCard(proj) {
+  const idx      = dIdx(proj.uid);
+  const projs    = DB.customers[state.customer] || [];
+  const spvList  = proj.projectCode ? (DB.spvs[proj.projectCode]||[]) : [];
+  // ── FIX 2: compute which SPVs are blocked for this card ──
+  const blocked  = usedSpvs(proj.projectCode, proj.uid);
+  const months   = ml();
+
+  const projOpts = projs.map(c =>
+    `<option value="${c}" ${c===proj.projectCode?'selected':''}>${c}</option>`
+  ).join('');
+
+  const spvOpts = spvList.map(s => {
+    // ── FIX 3: Different project → all enabled; same project → block used ones ──
+    const isBlocked = proj.projectCode && blocked.includes(s);
+    return `<option value="${s}" ${s===proj.spv?'selected':''} ${isBlocked?'disabled':''}
+      style="${isBlocked?'color:#bbb':''}">${s}${isBlocked?' (used)':''}</option>`;
+  }).join('');
+
+  const canRemove = state.projects.length > 1;
+
+  return `
+<div class="project-card" id="card-${proj.uid}">
+  <div class="card-head">
+    <div class="card-head-left">
+      <div class="idx-badge">${idx}</div>
+      <div class="card-head-title">Project Entry #${idx}</div>
+    </div>
+    <div class="card-head-right">
+      <div class="sel-grp">
+        <label>Project Code</label>
+        <select onchange="onProjChange(${proj.uid},this.value)">
+          <option value="">-- Select --</option>
+          ${projOpts}
+        </select>
+      </div>
+      ${proj.projectCode ? `
+      <div class="sel-grp">
+        <label>SPV</label>
+        <select onchange="onSpvChange(${proj.uid},this.value)">
+          <option value="">-- Select --</option>
+          ${spvOpts}
+        </select>
+      </div>` : ''}
+      ${canRemove ? `
+      <button class="btn btn-ghost btn-xs" onclick="removeProject(${proj.uid})" style="align-self:flex-end">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>Remove
+      </button>` : ''}
+    </div>
+  </div>
+  ${buildBody(proj, months)}
+  ${proj.spv ? `
+  <div class="card-foot">
+    <button class="btn btn-outline btn-xs" onclick="addRow(${proj.uid})">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>Add WTG Row
+    </button>
+    <span class="foot-hint">Wtg data auto-fetched · Enter monthly quantities manually</span>
+  </div>` : ''}
+</div>`;
+}
+
+function buildBody(proj, months) {
+  if (!proj.spv) return `<div style="padding:24px;text-align:center;color:var(--text3);font-size:13px">
+    ${proj.projectCode ? 'Select an SPV to load turbine data.' : 'Select a Project Code and SPV above.'}</div>`;
+
+  if (!proj.rows.length) return `<div style="padding:16px 16px 4px;color:var(--text3);font-size:12px">No rows yet.</div>`;
+
+  const dataRows = proj.rows.map((r,ri) => {
+    const rSum = r.mon.reduce((a,b)=>a+b,0);
+    return `<tr>
+      <td class="info">${r.wtg}</td>
+      <td class="info" style="text-align:center">${r.cap}</td>
+      <td class="info" style="font-size:11px">${r.tower}</td>
+      <td class="info">${r.blade}</td>
+      <td style="text-align:center">
+        <input type="number" class="n-inp" value="${r.qty}" min="0"
+          onchange="updField(${proj.uid},${ri},'qty',+this.value)">
+      </td>
+      ${months.map((_,mi)=>`<td style="text-align:center">
+        <input type="number" class="n-inp" value="${r.mon[mi]||0}" min="0"
+          oninput="updMon(${proj.uid},${ri},${mi},+this.value)">
+      </td>`).join('')}
+      <td class="rt-cell" id="rt-${proj.uid}-${ri}">${rSum}</td>
+      <td style="text-align:center;padding:4px">
+        <button class="btn btn-ghost btn-xs" style="padding:3px 7px" onclick="removeRow(${proj.uid},${ri})">✕</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  const totQty = proj.rows.reduce((s,r)=>s+r.qty,0);
+  const totMon = months.map((_,mi)=>proj.rows.reduce((s,r)=>s+(r.mon[mi]||0),0));
+  const grand  = totMon.reduce((a,b)=>a+b,0);
+
+  return `<div class="table-wrap">
+  <table class="demand-tbl">
+    <thead>
+      <tr>
+        <th class="left">WTG Type</th>
+        <th class="left">Cap (MW)</th>
+        <th class="left">Tower Type</th>
+        <th class="left">Blade Type</th>
+        <th>Total Qty</th>
+        ${months.map(m=>`<th class="mh">${m}</th>`).join('')}
+        <th class="rth">Row Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tbody-${proj.uid}">${dataRows}</tbody>
+    <tfoot>
+      <tr class="total-row" id="totrow-${proj.uid}">
+        <td colspan="4" style="text-align:right;font-size:10px;color:var(--text3);font-weight:700;letter-spacing:.5px;padding-right:12px">TOTAL</td>
+        <td class="tv" style="text-align:center">${totQty}</td>
+        ${totMon.map(t=>`<td class="tv" style="text-align:center">${t}</td>`).join('')}
+        <td class="tv rt-cell">${grand}</td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table></div>`;
+}
+
+// ════════════════════════════════
+//  FAST TOTAL DOM UPDATE
+// ════════════════════════════════
+function fastTotals(uid) {
+  const proj = state.projects.find(p=>p.uid===uid);
+  if (!proj) return;
+  proj.rows.forEach((r,ri) => {
+    const el = document.getElementById(`rt-${uid}-${ri}`);
+    if (el) el.textContent = r.mon.reduce((a,b)=>a+b,0);
+  });
+  const totRow = document.getElementById(`totrow-${uid}`);
+  if (!totRow) return;
+  const tds = totRow.querySelectorAll('td');
+  // tds[0]=label, tds[1]=qty, tds[2..13]=months, tds[14]=grand, tds[15]=empty
+  tds[1].textContent = proj.rows.reduce((s,r)=>s+r.qty,0);
+  const tm = (proj.rows[0]?.mon||[]).map((_,mi)=>proj.rows.reduce((s,r)=>s+(r.mon[mi]||0),0));
+  tm.forEach((t,i)=>{ if(tds[i+2]) tds[i+2].textContent=t; });
+  if(tds[14]) tds[14].textContent = tm.reduce((a,b)=>a+b,0);
+}
+
+function updBadge() {
+  const b = document.getElementById('statusBadge');
+  const n = state.projects.filter(p=>p.spv).length;
+  const r = state.projects.reduce((s,p)=>s+p.rows.length,0);
+  const u = state.projects.reduce((s,p)=>s+p.rows.reduce((ss,r)=>ss+r.mon.reduce((a,b)=>a+b,0),0),0);
+  if (n>0) { b.className='badge badge-green'; b.textContent=`${n} project(s) · ${r} rows · ${u} units`; }
+  else     { b.className='badge badge-gray';  b.textContent='No data entered'; }
+}
+
+// ════════════════════════════════
+//  SUMMARY MODAL
+// ════════════════════════════════
+function openSummary() {
+  const all=[];
+  state.projects.forEach(proj=>{
+    if(!proj.spv) return;
+    proj.rows.forEach(r=>all.push({cust:state.customer,proj:proj.projectCode,spv:proj.spv,...r}));
+  });
+  if(!all.length){ showToast('⚠ No data entered yet.','#d97706'); return; }
+
+  const months=ml();
+  document.getElementById('summaryMeta').textContent=`— ${state.customer} · ${state.year}`;
+
+  const gQty = all.reduce((s,r)=>s+r.qty,0);
+  const gMon = months.map((_,mi)=>all.reduce((s,r)=>s+(r.mon[mi]||0),0));
+  const gSum = gMon.reduce((a,b)=>a+b,0);
+
+  document.getElementById('sumTiles').innerHTML=`
+    <div class="s-tile"><div class="s-tile-lbl">Projects</div><div class="s-tile-val">${state.projects.filter(p=>p.spv).length}</div></div>
+    <div class="s-tile"><div class="s-tile-lbl">WTG Rows</div><div class="s-tile-val">${all.length}</div></div>
+    <div class="s-tile"><div class="s-tile-lbl">Total Qty</div><div class="s-tile-val">${gQty}</div></div>
+    <div class="s-tile"><div class="s-tile-lbl">Units Planned</div><div class="s-tile-val" style="color:var(--blue)">${gSum}</div></div>`;
+
+  document.getElementById('sumHead').innerHTML=`<tr>
+    <th class="left">Customer</th><th class="left">Project</th><th class="left">SPV</th><th class="left">WTG Type</th>
+    <th>Cap</th><th>Tower</th><th>Blade</th><th>Qty</th>
+    ${months.map(m=>`<th>${m}</th>`).join('')}
+    <th style="color:var(--accent2)">Sum</th>
+  </tr>`;
+
+  document.getElementById('sumBody').innerHTML=all.map(r=>`<tr>
+    <td class="left">${r.cust}</td><td class="left">${r.proj}</td><td class="left">${r.spv}</td><td class="left">${r.wtg}</td>
+    <td>${r.cap}</td><td style="font-size:11px">${r.tower}</td><td>${r.blade}</td>
+    <td style="color:var(--blue);font-weight:600">${r.qty}</td>
+    ${r.mon.map(m=>`<td>${m}</td>`).join('')}
+    <td style="color:var(--accent2);font-weight:700">${r.mon.reduce((a,b)=>a+b,0)}</td>
+  </tr>`).join('');
+
+  document.getElementById('sumFoot').innerHTML=`<tr class="sum-total">
+    <td colspan="7" style="text-align:right;font-size:10px;font-weight:700;letter-spacing:.5px;padding-right:12px">GRAND TOTAL</td>
+    <td class="tv">${gQty}</td>
+    ${gMon.map(t=>`<td class="tv">${t}</td>`).join('')}
+    <td class="tv">${gSum}</td>
+  </tr>`;
+
+  document.getElementById('summaryOv').style.display='flex';
+}
+
+function closeSummary() { document.getElementById('summaryOv').style.display='none'; }
+
+function submitPlan() { closeSummary(); showToast('✅ Demand plan submitted successfully!'); }
+
+// ════════════════════════════════
+//  TOAST
+// ════════════════════════════════
+function showToast(msg,bg){
+  const old=document.getElementById('_t'); if(old) old.remove();
+  const t=document.createElement('div');
+  t.className='toast'; t.id='_t';
+  if(bg) t.style.background=bg;
+  t.innerHTML=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+
+// init
+state.year='2026';
+</script>
+</body>
+</html>
