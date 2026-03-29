@@ -1,0 +1,360 @@
+:host { display: block; }
+
+/* ── Variables (match global) ── */
+$header-h:    56px;
+$sidebar-w:   240px;
+$sidebar-col: 64px;  // collapsed width (icon only)
+$trans:       .22s ease;
+
+/* ════════════════════════════════════
+   TOP NAV
+   ════════════════════════════════════ */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: $header-h;
+  background: #fff;
+  border-bottom: 1px solid #e2e6ed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 200;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-menu-btn {
+  width: 34px; height: 34px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #4a5568;
+  transition: background $trans, color $trans;
+
+  &:hover { background: #f0f4f8; color: #1a2332; }
+}
+
+.nav-logo { text-decoration: none; display: flex; align-items: center; }
+.nav-logo-img {
+  height: 36px;
+  object-fit: contain;
+  object-position: left;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #8fa0b4;
+  transition: background $trans, color $trans;
+  &:hover { background: #f0f4f8; color: #1a2332; }
+}
+
+/* User pill */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+  padding: 5px 14px 5px 5px;
+  border-radius: 100px;
+  border: 1px solid #e2e6ed;
+  background: #f9fafb;
+  cursor: default;
+}
+.nav-avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a6fc4, #0d4f9e);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.nav-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.nav-username {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a2332;
+  white-space: nowrap;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-role {
+  font-size: 10.5px;
+  color: #8fa0b4;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* ════════════════════════════════════
+   BODY (sidebar + main)
+   ════════════════════════════════════ */
+.app-body {
+  display: flex;
+  margin-top: $header-h;
+  min-height: calc(100vh - #{$header-h});
+}
+
+/* ════════════════════════════════════
+   SIDEBAR
+   ════════════════════════════════════ */
+.sidebar {
+  width: $sidebar-w;
+  background: #fff;
+  border-right: 1px solid #e2e6ed;
+  position: fixed;
+  top: $header-h;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  transition: width $trans;
+  z-index: 100;
+}
+
+.sidebar-inner {
+  width: $sidebar-w;   /* always full width inside — let outer clip */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sb-section {
+  padding: 0 10px;
+  margin-bottom: 4px;
+}
+
+.sb-spacer { flex: 1; }
+
+.sb-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #8fa0b4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0 8px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity $trans;
+}
+
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5568;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  transition: background $trans, color $trans;
+  white-space: nowrap;
+  margin-bottom: 2px;
+
+  svg { flex-shrink: 0; }
+
+  &:hover  { background: #f0f4f8; color: #1a2332; }
+  &.active { background: #e6f7f1; color: #00a86b; font-weight: 600; }
+  &.sb-logout:hover { background: #fef2f2; color: #dc2626; }
+}
+
+.sb-label-text {
+  overflow: hidden;
+  transition: opacity $trans, max-width $trans;
+  white-space: nowrap;
+}
+
+/* ── MAIN CONTENT ── */
+.main-content {
+  margin-left: $sidebar-w;
+  flex: 1;
+  padding: 24px;
+  overflow-x: hidden;
+  transition: margin-left $trans;
+  min-width: 0;
+}
+
+/* ════════════════════════════════════
+   COLLAPSED STATE
+   ════════════════════════════════════ */
+.app-shell.sidebar-collapsed {
+  .sidebar {
+    width: $sidebar-col;
+  }
+
+  .sb-label {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sb-label-text {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+  }
+
+  .main-content {
+    margin-left: $sidebar-col;
+  }
+}
+
+/* ════════════════════════════════════
+   LOGOUT CONFIRMATION DIALOG
+   ════════════════════════════════════ */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: ovFadeIn .2s ease;
+}
+@keyframes ovFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.confirm-dialog {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.18), 0 4px 16px rgba(0,0,0,.08);
+  animation: dialogUp .25s ease;
+}
+@keyframes dialogUp {
+  from { opacity: 0; transform: translateY(16px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.confirm-icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: #fef3c7;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.confirm-dialog h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a2332;
+  margin-bottom: 10px;
+  letter-spacing: -.2px;
+}
+
+.confirm-dialog p {
+  font-size: 14px;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.confirm-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: #8fa0b4;
+  background: #f0f4f8;
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+
+  strong { color: #1a2332; }
+  svg { color: #8fa0b4; }
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 11px;
+  border: 1.5px solid #e2e6ed;
+  border-radius: 8px;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all .15s;
+
+  &:hover { border-color: #8fa0b4; color: #1a2332; background: #f9fafb; }
+}
+
+.btn-confirm-logout {
+  flex: 1;
+  padding: 11px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all .15s;
+  box-shadow: 0 4px 12px rgba(220,38,38,.3);
+
+  &:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(220,38,38,.4); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 0;
+    box-shadow: none;
+  }
+  .main-content {
+    margin-left: 0 !important;
+  }
+  .app-shell:not(.sidebar-collapsed) .sidebar {
+    width: $sidebar-w;
+    box-shadow: 4px 0 20px rgba(0,0,0,.12);
+  }
+  .nav-username { max-width: 120px; }
+  .nav-role     { display: none; }
+}

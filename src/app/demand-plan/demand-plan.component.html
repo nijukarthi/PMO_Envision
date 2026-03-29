@@ -1,0 +1,275 @@
+<!-- PAGE HEADER -->
+<div class="page-hd">
+  <div>
+    <div class="page-title">YEarly Demand Plan</div>
+    <div class="page-sub">Manage wind turbine demand entries by project and SPV</div>
+  </div>
+  <span [class]="badgeClass">{{ badgeText }}</span>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="fg">
+    <label>Plan Year</label>
+    <select [(ngModel)]="year" (ngModelChange)="onYearChange()">
+      <option value="">-- Select Year --</option>
+      <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+    </select>
+  </div>
+
+  <div class="fg">
+    <label>Customer</label>
+    <select [(ngModel)]="customer" (ngModelChange)="onCustomerChange()">
+      <option value="">-- Select Customer --</option>
+      <option *ngFor="let c of customers" [value]="c">{{ c }}</option>
+    </select>
+  </div>
+
+  <div style="flex:1"></div>
+
+  <button class="btn btn-outline btn-sm" (click)="addProject()" [disabled]="!filtersReady">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Add More Project
+  </button>
+
+  <button class="btn btn-blue btn-sm" (click)="openSummary()" [disabled]="!hasData">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/>
+      <line x1="9" y1="3" x2="9" y2="21"/>
+    </svg>
+    View Summary
+  </button>
+</div>
+
+<!-- PROJECTS CONTAINER -->
+<div class="projects-wrap">
+
+  <!-- Empty state -->
+  <div *ngIf="!filtersReady || projects.length === 0" class="project-card">
+    <div class="empty-st">
+      <div class="empty-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+        </svg>
+      </div>
+      <h3>Select Year &amp; Customer to begin</h3>
+      <p>Use the filters above to start entering demand data.</p>
+    </div>
+  </div>
+
+  <!-- Project Cards -->
+  <div *ngFor="let proj of projects; trackBy: trackByUid" class="project-card" [id]="'card-' + proj.uid">
+
+    <!-- Card Head -->
+    <div class="card-head">
+      <div class="card-head-left">
+        <div class="idx-badge">{{ displayIndex(proj.uid) }}</div>
+        <div class="card-head-title">Project Entry #{{ displayIndex(proj.uid) }}</div>
+      </div>
+      <div class="card-head-right">
+        <!-- Project Code -->
+        <div class="sel-grp">
+          <label>Project Code</label>
+          <select [value]="proj.projectCode" (change)="onProjectChange(proj.uid, $any($event.target).value)">
+            <option value="">-- Select --</option>
+            <option *ngFor="let code of getProjects()" [value]="code">{{ code }}</option>
+          </select>
+        </div>
+        <!-- SPV -->
+        <ng-container *ngIf="proj.projectCode">
+          <div class="sel-grp">
+            <label>SPV</label>
+            <select [value]="proj.spv" (change)="onSPVChange(proj.uid, $any($event.target).value)">
+              <option value="">-- Select --</option>
+              <option
+                *ngFor="let spv of getSPVs(proj.projectCode)"
+                [value]="spv"
+                [disabled]="isSpvDisabled(spv, proj.projectCode, proj.uid)"
+              >{{ spv }}{{ isSpvDisabled(spv, proj.projectCode, proj.uid) ? ' (used)' : '' }}</option>
+            </select>
+          </div>
+        </ng-container>
+        <!-- Remove -->
+        <button *ngIf="projects.length > 1" class="btn btn-ghost btn-xs" style="align-self:flex-end" (click)="removeProject(proj.uid)">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>Remove
+        </button>
+      </div>
+    </div>
+
+    <!-- No SPV hint -->
+    <div *ngIf="!proj.spv" style="padding:24px;text-align:center;color:var(--text3);font-size:13px">
+      {{ proj.projectCode ? 'Select an SPV to load turbine data.' : 'Select a Project Code and SPV above.' }}
+    </div>
+
+    <!-- Table -->
+    <div *ngIf="proj.spv && proj.rows.length > 0" class="table-wrap">
+      <table class="demand-tbl">
+        <thead>
+          <tr>
+            <th class="left">WTG Type</th>
+            <th class="left">Cap (MW)</th>
+            <th class="left">Tower Type</th>
+            <th class="left">Blade Type</th>
+            <th>Total Qty</th>
+            <th *ngFor="let m of getMonthLabels(); trackBy: trackByIdx" class="mh">{{ m }}</th>
+            <th class="rth">Row Total</th>
+            <!-- <th></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of proj.rows; let ri = index; trackBy: trackByIdx">
+            <td class="info">
+              <input type="text" class="n-inp" style="width:70px;text-align:left" [value]="row.wtg"
+                (change)="updField(proj.uid, ri, 'wtg', $any($event.target).value)">
+            </td>
+            <td class="info" style="text-align:center">
+              <input type="number" class="n-inp" style="width:52px" [value]="row.cap"
+                (change)="updField(proj.uid, ri, 'cap', +$any($event.target).value)">
+            </td>
+            <td class="info" style="font-size:11px">
+              <input type="text" class="n-inp" style="width:96px;text-align:left" [value]="row.tower"
+                (change)="updField(proj.uid, ri, 'tower', $any($event.target).value)">
+            </td>
+            <td class="info">
+              <input type="text" class="n-inp" style="width:52px;text-align:left" [value]="row.blade"
+                (change)="updField(proj.uid, ri, 'blade', $any($event.target).value)">
+            </td>
+            <td style="text-align:center">
+              <input type="number" class="n-inp" [value]="row.qty" min="0"
+                (change)="updField(proj.uid, ri, 'qty', +$any($event.target).value)">
+            </td>
+            <td *ngFor="let v of row.mon; let mi = index; trackBy: trackByIdx" style="text-align:center">
+              <input type="number" class="n-inp" [value]="v || 0" min="0"
+                (input)="updMon(proj.uid, ri, mi, +$any($event.target).value)">
+            </td>
+            <td class="rt-cell">{{ rowTotal(row) }}</td>
+            <!-- <td style="text-align:center;padding:4px">
+              <button class="btn btn-ghost btn-xs" style="padding:3px 7px" (click)="removeRow(proj.uid, ri)">✕</button>
+            </td> -->
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="total-row">
+            <td colspan="4" style="text-align:right;font-size:10px;color:var(--text3);font-weight:700;letter-spacing:.5px;padding-right:12px">TOTAL</td>
+            <td class="tv" style="text-align:center">{{ qtyTotal(proj.rows) }}</td>
+            <td *ngFor="let v of proj.rows[0]?.mon; let mi = index; trackBy: trackByIdx" class="tv" style="text-align:center">{{ colTotal(proj.rows, mi) }}</td>
+            <td class="tv rt-cell">{{ grandTotal(proj.rows) }}</td>
+           <!--  <td></td> -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card Footer -->
+    <div *ngIf="proj.spv" class="card-foot">
+     <!--  <button class="btn btn-outline btn-xs" (click)="addRow(proj.uid)">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>Add WTG Row
+      </button> -->
+      <span class="foot-hint">Wtg data auto-fetched · Enter monthly quantities manually</span>
+    </div>
+
+  </div><!-- /project-card -->
+</div><!-- /projects-wrap -->
+
+
+<!-- SUMMARY MODAL -->
+<div *ngIf="summaryVisible" class="overlay" (click)="$event.target === $event.currentTarget ? closeSummary() : null">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-title">
+        <span class="modal-dot"></span>
+        Plan Summary
+        <span style="font-size:13px;color:var(--text3);font-weight:400">— {{ customer }} · {{ year }}</span>
+      </div>
+      <button class="modal-close" (click)="closeSummary()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="sum-tiles">
+        <div class="s-tile">
+          <div class="s-tile-lbl">Projects</div>
+          <div class="s-tile-val">{{ summaryProjects.length }}</div>
+        </div>
+        <div class="s-tile">
+          <div class="s-tile-lbl">WTG Rows</div>
+          <div class="s-tile-val">{{ getTotalRows() }}</div>
+        </div>
+        <div class="s-tile">
+          <div class="s-tile-lbl">Total Qty</div>
+          <div class="s-tile-val">{{ summaryTotalQty }}</div>
+        </div>
+        <div class="s-tile">
+          <div class="s-tile-lbl">Units Planned</div>
+          <div class="s-tile-val" style="color:var(--blue)">{{ summaryTotalUnits }}</div>
+        </div>
+      </div>
+
+      <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">
+        Detailed Breakdown
+      </div>
+
+      <div style="overflow-x:auto">
+        <table class="sum-tbl">
+          <thead>
+            <tr>
+              <th class="left">Customer</th>
+              <th class="left">Project</th>
+              <th class="left">SPV</th>
+              <th class="left">WTG Type</th>
+              <th>Cap</th><th>Tower</th><th>Blade</th><th>Qty</th>
+              <th *ngFor="let m of getMonthLabels(); trackBy: trackByIdx">{{ m }}</th>
+              <th style="color:var(--accent2)">Sum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let p of summaryProjects; trackBy: trackByUid">
+              <tr *ngFor="let row of p.rows; let ri = index; trackBy: trackByIdx">
+                <td class="left">{{ customer }}</td>
+                <td class="left">{{ p.projectCode }}</td>
+                <td class="left">{{ p.spv }}</td>
+                <td class="left">{{ row.wtg }}</td>
+                <td>{{ row.cap }}</td>
+                <td style="font-size:11px">{{ row.tower }}</td>
+                <td>{{ row.blade }}</td>
+                <td style="color:var(--blue);font-weight:600">{{ row.qty }}</td>
+                <td *ngFor="let v of row.mon; trackBy: trackByIdx">{{ v }}</td>
+                <td style="color:var(--accent2);font-weight:700">{{ rowTotal(row) }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+          <tfoot>
+            <tr class="sum-total">
+              <td colspan="7" style="text-align:right;font-size:10px;font-weight:700;letter-spacing:.5px;padding-right:12px">GRAND TOTAL</td>
+              <td class="tv">{{ summaryTotalQty }}</td>
+              <td *ngFor="let m of getMonthLabels(); let mi = index; trackBy: trackByIdx" class="tv">{{ summaryColTotal(mi) }}</td>
+              <td class="tv">{{ summaryTotalUnits }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal-ft">
+      <span style="font-size:12px;color:var(--text3)">Review all entries before submitting.</span>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-outline" (click)="closeSummary()">Close</button>
+        <button class="btn btn-green" (click)="submitPlan()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>Submit Plan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div *ngIf="toastVisible" class="toast" [class.warn]="toastWarn">{{ toastMsg }}</div>
