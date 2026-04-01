@@ -1,0 +1,43 @@
+<div class="card h-full">
+    <h2>Allocation Approval</h2>
+    <div class="border border-(--surface-border) rounded-lg overflow-hidden mt-2">
+        <p-table [value]="allocationApprovalList" [rowHover]="true" [tableStyle]="{ 'min-width': 'max-content' }">
+            <ng-template #header>
+                <tr>
+                    <th>SL No</th>
+                    <th>Allocation Initiated By</th>
+                    <th>Initiated On</th>
+                    <th>Plan Month</th>
+                    <th>Plant Name</th>
+                    <th>Plant Manager</th>
+                    <th>Status</th>
+                    <th>Reviewed By</th>
+                    <th>Reviewed On</th>
+                    <th>Approved By</th>
+                    <th>Approved On</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-allocation let-i="rowIndex">
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ allocation.initiatedBy }}</td>
+                    <td>{{ allocation.initiatedOn }}</td>
+                    <td>{{ allocation.planMonth }}</td>
+                    <td>{{ allocation.plantName }}</td>
+                    <td>{{ allocation.plantManager }}</td>
+                    <td>
+                        <p-tag [value]="allocation.status" [severity]="getSeverity(allocation.status)" />
+                    </td>
+                    <td>{{ allocation.reviewedBy || '-' }}</td>
+                    <td>{{ allocation.reviewedOn || '-' }}</td>
+                    <td>{{ allocation.approvedBy || '-' }}</td>
+                    <td>{{ allocation.approvedOn || '-' }}</td>
+                    <td>
+                        <p-button label="Review" />
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
